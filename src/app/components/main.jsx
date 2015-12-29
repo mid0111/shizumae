@@ -1,14 +1,21 @@
 import React from 'react';
-import RaisedButton from 'material-ui/lib/raised-button';
-import Dialog from 'material-ui/lib/dialog';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
+import CustomTheme from './theme.jsx'
 import Colors from 'material-ui/lib/styles/colors';
-import FlatButton from 'material-ui/lib/flat-button';
+import Tabs from 'material-ui/lib/tabs/tabs';
+import Tab from 'material-ui/lib/tabs/tab';
+import NewsContainer from './newsContainer.jsx';
 
-const containerStyle = {
-  textAlign: 'center',
-  paddingTop: 200,
+const styles = {
+  container: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%'
+  },
+  tab: {
+    fontSize: '1.2em'
+  }
 };
 
 const Main = React.createClass({
@@ -19,8 +26,7 @@ const Main = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
-      open: false,
+      muiTheme: ThemeManager.getMuiTheme(CustomTheme)
     };
   },
 
@@ -30,48 +36,17 @@ const Main = React.createClass({
     };
   },
 
-  componentWillMount() {
-    let newMuiTheme = ThemeManager.modifyRawThemePalette(this.state.muiTheme, {
-      accent1Color: Colors.deepOrange500,
-    });
-
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  _handleRequestClose() {
-    this.setState({
-      open: false,
-    });
-  },
-
-  _handleTouchTap() {
-    this.setState({
-      open: true,
-    });
-  },
-
   render() {
-    const standardActions = (
-      <FlatButton
-        label="Okey"
-        secondary={true}
-        onTouchTap={this._handleRequestClose}
-      />
-    );
-
     return (
-      <div style={containerStyle}>
-        <Dialog
-          open={this.state.open}
-          title="Super Secret Password"
-          actions={standardActions}
-          onRequestClose={this._handleRequestClose}
-        >
-          1-2-3-4-5
-        </Dialog>
-        <h1>material-ui</h1>
-        <h2>example project</h2>
-        <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
+      <div style={styles.container}>
+        <Tabs>
+          <Tab label="ニュース" style={styles.tab}>
+            <NewsContainer />
+          </Tab>
+          <Tab label="たべる" style={styles.tab}>
+          </Tab>
+          <Tab label="つくる" style={styles.tab} />
+        </Tabs>
       </div>
     );
   },
