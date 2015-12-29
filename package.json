@@ -6,6 +6,7 @@
     "url": "https://github.com/mid0111/shizumae.git"
   },
   "scripts": {
+    "test": "echo 'Not implemented yet !!'",
     "start": "gulp"
   },
   "devDependencies": {
