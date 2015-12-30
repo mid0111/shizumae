@@ -1,5 +1,6 @@
 import React from 'react';
 import Paper from 'material-ui/lib/paper';
+import moment from 'moment';
 
 const styles = {
   paper: {
@@ -7,7 +8,8 @@ const styles = {
     padding: 20,
   },
   pre: {
-    maxHeight: 100,
+    fontSize: 13,
+    maxHeight: 91,
     backgroundColor: '#fff',
     border: 'none',
     padding: 2,
@@ -17,14 +19,15 @@ const styles = {
     fontSize: '0.5em'
   },
   frame: {
-    height: 300,
+    height: 280,
     overflow: 'hidden'
   },
   picture: {
     width: '100%'
   },
   createdTime: {
-    fontSize: '0.5em',
+    fontSize: '0.6em',
+    marginTop: 5,
     marginBottom: 0
   }
 };
@@ -35,8 +38,19 @@ const NewsFeeds = React.createClass({
     var containerDomNode = React.findDOMNOde(this);
   },
 
+  getDate(date) {
+    moment.locale('ja', {
+      weekdaysShort: ["日","月","火","水","木","金","土"]
+    });
+    var m = moment(date);
+    return m.format("MM/DD (ddd)");
+  },
+
   render() {
     var feedNodes = this.props.feeds.map((feed) => {
+      if(feed.message.indexOf('水産漁港課') < 0) {
+        return;
+      }
       return (
         <div className="col-md-6" key={feed.id}>
           <Paper zDepth={2} style={styles.paper}>
@@ -45,7 +59,7 @@ const NewsFeeds = React.createClass({
             <div style={styles.frame}>
               <img style={styles.picture} src={feed.full_picture} />
             </div>
-            <p style={styles.createdTime}>{feed.created_time}</p>
+            <p style={styles.createdTime}>{this.getDate(feed.created_time)}</p>
           </Paper>
         </div>
       );

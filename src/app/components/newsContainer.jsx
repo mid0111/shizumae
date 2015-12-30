@@ -12,6 +12,9 @@ const styles = {
     fontSize: '1.6em',
     marginBottom: '1em',
     fontWeight: 400,
+  },
+  login: {
+    padding: 20
   }
 };
 
@@ -20,8 +23,21 @@ const NewsContainer = React.createClass({
   getInitialState() {
     return {
       fbLogin: false,
-      feeds: []
+      feeds: [],
+      innerHeight: window.innerHeight
     };
+  },
+
+  handleResize: function(e) {
+    this.setState({innerHeight: window.innerHeight});
+  },
+
+  componentDidMount: function() {
+    window.addEventListener('resize', this.handleResize);
+  },
+
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this.handleResize);
   },
 
   componentDidMount: function() {
@@ -55,7 +71,7 @@ const NewsContainer = React.createClass({
   },
 
   getFbFeeds() {
-    FB.api('/295132850592974/feed?fields=full_picture,message,created_time', function(response) {
+    FB.api('/295132850592974/feed?fields=full_picture,message,created_time&limit=100', function(response) {
       this.setState({
         feeds: response.data
       })
@@ -94,10 +110,10 @@ const NewsContainer = React.createClass({
 
     if(!this.state.fbLogin) {
       return (
-        <div className="container" style={{overflow: 'auto', height: '600'}}>
+        <div className="container" style={{overflow: 'auto', height: this.state.innerHeight - 60, paddingBottom: 30}}>
           {info}
-          <div>
-            <span>Facebook にログインして しずまえ のメッセージを購読</span>
+          <div style={styles.login}>
+            <p>Facebook にログインして しずまえ のメッセージを購読</p>
             <FlatButton secondary={true} label="ログイン" labelPosition="after"
                         onClick={this._handleFbLogin}>
             </FlatButton>
@@ -107,7 +123,7 @@ const NewsContainer = React.createClass({
     }
 
     return (
-      <div className="container" style={{overflow: 'auto', height: '800'}}>
+      <div className="container" style={{overflow: 'auto', height: this.state.innerHeight - 60, paddingBottom: 30}}>
         {info}
         <NewsFeeds feeds={this.state.feeds}/>
       </div>
