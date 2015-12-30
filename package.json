@@ -25,7 +25,7 @@
   "dependencies": {
     "material-ui": "^0.14.0",
     "react": "^0.14.0",
-    "react-dom":"^0.14.0",
+    "react-dom": "^0.14.0",
     "react-tap-event-plugin": "^0.2.1"
   },
   "engines": {

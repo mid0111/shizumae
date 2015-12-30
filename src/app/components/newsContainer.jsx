@@ -1,25 +1,115 @@
 import React from 'react';
+import Paper from 'material-ui/lib/paper';
+import FlatButton from 'material-ui/lib/flat-button';
+import NewsFeeds from './newsFeeds.jsx';
 
 const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
+  paper: {
+    marginTop: 10,
+    padding: 20
   },
+  headline: {
+    fontSize: '1.6em',
+    marginBottom: '1em',
+    fontWeight: 400,
+  }
 };
 
 const NewsContainer = React.createClass({
+
+  getInitialState() {
+    return {
+      fbLogin: false,
+      feeds: []
+    };
+  },
+
+  componentDidMount: function() {
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '197581620267071',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.5'
+      });
+
+      FB.getLoginStatus(function(response) {
+        this.statusChangeCallback(response);
+      }.bind(this));
+    }.bind(this);
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  },
+
+  statusChangeCallback: function(response) {
+    if (response.status === 'connected') {
+      this.setState({fbLogin: true});
+      this.getFbFeeds();
+    }
+  },
+
+  getFbFeeds() {
+    FB.api('/295132850592974/feed?fields=full_picture,message,created_time', function(response) {
+      this.setState({
+        feeds: response.data
+      })
+    }.bind(this));
+  },
+
+  checkLoginState: function() {
+    FB.getLoginStatus(function(response) {
+      this.statusChangeCallback(response);
+    }.bind(this));
+  },
+
+  _handleFbLogin() {
+    FB.login(this.checkLoginState());
+  },
+
   render() {
+    var info = (
+      <Paper zDepth={2} style={styles.paper}>
+        <div style={styles.content}>
+          <p>
+            「しずまえ」とは、静岡市の前浜（駿河区石部～清水区蒲原）のことです。江戸前みたいですね！
+          </p>
+          <p>
+            静岡市には、用宗と由比に2つの漁港があります。
+          </p>
+          <p>
+            ここで水揚げされる魚介類を「しずまえ鮮魚」といいます。
+          </p>
+          <p>
+            <a target="_blank" href="http://www.city.shizuoka.jp/000_006732.html">さらに詳しく</a>
+          </p>
+        </div>
+      </Paper>
+    );
+
+    if(!this.state.fbLogin) {
+      return (
+        <div className="container" style={{overflow: 'auto', height: '600'}}>
+          {info}
+          <div>
+            <span>Facebook にログインして しずまえ のメッセージを購読</span>
+            <FlatButton secondary={true} label="ログイン" labelPosition="after"
+                        onClick={this._handleFbLogin}>
+            </FlatButton>
+          </div>
+        </div>
+      )
+    }
+
     return (
-      <div>
-        <h2 style={styles.headline}>Tab One Template Example</h2>
-        <p>
-          This is an example of a tab template!
-        </p>
-        <p>
-          You can put any sort of HTML or react component in here. It even keeps the component state!
-        </p>
+      <div className="container" style={{overflow: 'auto', height: '800'}}>
+        {info}
+        <NewsFeeds feeds={this.state.feeds}/>
       </div>
     );
   },
