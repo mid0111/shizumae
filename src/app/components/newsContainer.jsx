@@ -2,6 +2,7 @@ import React from 'react';
 import NewsFeeds from './newsFeeds.jsx';
 import NewsHeader from './newsHeader.jsx';
 import FlatButton from 'material-ui/lib/flat-button';
+import utils from './../utils.js';
 
 const styles = {
   login: {
@@ -102,12 +103,14 @@ const NewsContainer = React.createClass({
       )
     }
 
+    // ニュースフィードを表示
     return (
       <div className="container" style={this.getContainerStyle()}>
         <NewsHeader />
-        <NewsFeeds feeds={this.state.feeds}/>
+        <NewsFeeds feeds={this.state.feeds} />
       </div>
     );
+
   },
 });
 

@@ -1,22 +1,11 @@
 import React from 'react';
 import Paper from 'material-ui/lib/paper';
-import moment from 'moment';
+import utils from './../utils.js';
 
 const styles = {
   paper: {
     marginTop: 10,
-    padding: 20,
-  },
-  pre: {
-    fontSize: 13,
-    maxHeight: 91,
-    backgroundColor: '#fff',
-    border: 'none',
-    padding: 2,
-    overflow: 'hidden'
-  },
-  more: {
-    fontSize: '0.5em'
+    padding: 20
   },
   frame: {
     height: 280,
@@ -34,32 +23,65 @@ const styles = {
 
 const NewsFeeds = React.createClass({
 
+  getInitialState() {
+    return {
+      zoom: new Array(this.props.feeds.length)
+    };
+  },
+
+  getPreStyle(i) {
+    var style = {
+      fontSize: 13,
+      maxHeight: 127.4,
+      backgroundColor: '#fff',
+      border: 'none',
+      padding: 2,
+      overflow: 'hidden'
+    };
+    if(this.state.zoom[i]) {
+      style.maxHeight = 'none';
+    }
+    return style;
+  },
+
+  getMoreStyle(i) {
+    var style = {
+      fontSize: '0.5em',
+      cursor: 'pointer'
+    };
+    if(this.state.zoom[i]) {
+      style.hidden = true;
+    }
+    return style;
+
+  },
+
   scrollElementIntoViewIfNeeded(domNode) {
     var containerDomNode = React.findDOMNOde(this);
   },
 
-  getDate(date) {
-    moment.locale('ja', {
-      weekdaysShort: ["日","月","火","水","木","金","土"]
+  handleOnClick(i) {
+    var zoom = this.state.zoom;
+    zoom[i] = true;
+    this.setState({
+      zoom: zoom
     });
-    var m = moment(date);
-    return m.format("MM/DD (ddd)");
   },
 
   render() {
-    var feedNodes = this.props.feeds.map((feed) => {
+    var feedNodes = this.props.feeds.map((feed, i) => {
       if(feed.message.indexOf('水産漁港課') < 0) {
         return;
       }
       return (
-        <div className="col-md-6" key={feed.id}>
+        <div className="col-md-6" key={feed.id} onClick={this.handleOnClick.bind(this, i)}>
           <Paper zDepth={2} style={styles.paper}>
-            <pre style={styles.pre}>{feed.message}</pre>
-            <p style={styles.more}>もっと見る</p>
+            <pre style={this.getPreStyle(i)}>{feed.message}</pre>
+            <a><p style={this.getMoreStyle(i)}>...もっと見る</p></a>
             <div style={styles.frame}>
               <img style={styles.picture} src={feed.full_picture} />
             </div>
-            <p style={styles.createdTime}>{this.getDate(feed.created_time)}</p>
+            <p style={styles.createdTime}>{utils.getDate(feed.created_time)}</p>
           </Paper>
         </div>
       );
