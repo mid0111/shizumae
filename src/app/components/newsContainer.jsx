@@ -1,18 +1,9 @@
 import React from 'react';
-import Paper from 'material-ui/lib/paper';
-import FlatButton from 'material-ui/lib/flat-button';
 import NewsFeeds from './newsFeeds.jsx';
+import NewsHeader from './newsHeader.jsx';
+import FlatButton from 'material-ui/lib/flat-button';
 
 const styles = {
-  paper: {
-    marginTop: 10,
-    padding: 20
-  },
-  headline: {
-    fontSize: '1.6em',
-    marginBottom: '1em',
-    fontWeight: 400,
-  },
   login: {
     padding: 20
   }
@@ -88,32 +79,21 @@ const NewsContainer = React.createClass({
     FB.login(this.checkLoginState());
   },
 
-  render() {
-    var info = (
-      <Paper zDepth={2} style={styles.paper}>
-        <div style={styles.content}>
-          <p>
-            「しずまえ」とは、静岡市の前浜（駿河区石部～清水区蒲原）のことです。江戸前みたいですね！
-          </p>
-          <p>
-            静岡市には、用宗と由比に2つの漁港があります。
-          </p>
-          <p>
-            ここで水揚げされる魚介類を「しずまえ鮮魚」といいます。
-          </p>
-          <p>
-            <a target="_blank" href="http://www.city.shizuoka.jp/000_006732.html">さらに詳しく</a>
-          </p>
-        </div>
-      </Paper>
-    );
+  getContainerStyle() {
+    return {
+      overflow: 'auto',
+      height: this.state.innerHeight - 60,
+      paddingBottom: 30
+    };
+  },
 
+  render() {
     if(!this.state.fbLogin) {
       return (
-        <div className="container" style={{overflow: 'auto', height: this.state.innerHeight - 60, paddingBottom: 30}}>
-          {info}
+        <div className="container" style={this.getContainerStyle()}>
+          <NewsHeader />
           <div style={styles.login}>
-            <p>Facebook にログインして しずまえ のメッセージを購読</p>
+            <p>Facebook にログインして しずまえ のニュースを購読</p>
             <FlatButton secondary={true} label="ログイン" labelPosition="after"
                         onClick={this._handleFbLogin}>
             </FlatButton>
@@ -123,8 +103,8 @@ const NewsContainer = React.createClass({
     }
 
     return (
-      <div className="container" style={{overflow: 'auto', height: this.state.innerHeight - 60, paddingBottom: 30}}>
-        {info}
+      <div className="container" style={this.getContainerStyle()}>
+        <NewsHeader />
         <NewsFeeds feeds={this.state.feeds}/>
       </div>
     );
