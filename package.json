@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo 'Not implemented yet !!'",
     "start": "gulp",
-    "deploy": "gulp s3"
+    "deploy": "gulp build && gulp s3"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
@@ -27,6 +27,7 @@
     "watchify": "^3.6.1"
   },
   "dependencies": {
+    "googleplaces": "^0.6.0",
     "material-ui": "^0.14.0",
     "moment": "^2.10.6",
     "react": "^0.14.5",
