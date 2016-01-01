@@ -6,4 +6,4 @@ deployment:
   deploy:
     branch: master
     commands:
-      - npm run upload
+      - npm run deploy
