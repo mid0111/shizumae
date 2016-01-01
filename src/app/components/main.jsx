@@ -1,10 +1,11 @@
 import React from 'react';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import CustomTheme from './theme.jsx'
+import CustomTheme from './theme.jsx';
 import Colors from 'material-ui/lib/styles/colors';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import NewsContainer from './news/newsContainer.jsx';
+import ShopContainer from './shop/shopContainer.jsx';
 
 const styles = {
   container: {
@@ -39,11 +40,12 @@ const Main = React.createClass({
   render() {
     return (
       <div style={styles.container}>
-        <Tabs>
+        <Tabs initialSelectedIndex={1}>
           <Tab label="ニュース" style={styles.tab}>
             <NewsContainer />
           </Tab>
           <Tab label="たべる" style={styles.tab}>
+            <ShopContainer />
           </Tab>
           <Tab label="つくる" style={styles.tab} />
         </Tabs>
