@@ -32,10 +32,11 @@ const NewsContainer = React.createClass({
     window.removeEventListener('resize', this.handleResize);
   },
 
+
   componentDidMount: function() {
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '197581620267071',
+        appId      : '1523396571294082',
         cookie     : true,
         xfbml      : true,
         version    : 'v2.5'

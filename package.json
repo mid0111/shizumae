@@ -7,7 +7,8 @@
   },
   "scripts": {
     "test": "echo 'Not implemented yet !!'",
-    "start": "gulp"
+    "start": "gulp",
+    "deploy": "gulp s3"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
@@ -17,6 +18,7 @@
     "browserify": "^12.0.1",
     "gulp": "^3.9.0",
     "gulp-notify": "^2.2.0",
+    "gulp-s3": "^0.3.0",
     "gulp-util": "^3.0.7",
     "pretty-hrtime": "^1.0.1",
     "require-dir": "^0.3.0",
