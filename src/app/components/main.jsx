@@ -4,7 +4,7 @@ import CustomTheme from './theme.jsx'
 import Colors from 'material-ui/lib/styles/colors';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
-import NewsContainer from './newsContainer.jsx';
+import NewsContainer from './news/newsContainer.jsx';
 
 const styles = {
   container: {
@@ -49,7 +49,7 @@ const Main = React.createClass({
         </Tabs>
       </div>
     );
-  },
+  }
 });
 
 export default Main;

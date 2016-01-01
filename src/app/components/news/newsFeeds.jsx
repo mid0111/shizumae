@@ -1,6 +1,6 @@
 import React from 'react';
 import Paper from 'material-ui/lib/paper';
-import utils from './../utils.js';
+import utils from './../../utils.js';
 
 const styles = {
   paper: {

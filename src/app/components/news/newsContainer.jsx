@@ -2,7 +2,7 @@ import React from 'react';
 import NewsFeeds from './newsFeeds.jsx';
 import NewsHeader from './newsHeader.jsx';
 import FlatButton from 'material-ui/lib/flat-button';
-import utils from './../utils.js';
+import utils from './../../utils.js';
 
 const styles = {
   login: {
