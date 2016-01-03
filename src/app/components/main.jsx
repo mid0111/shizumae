@@ -1,11 +1,9 @@
 import React from 'react';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import CustomTheme from './theme.jsx';
-import Colors from 'material-ui/lib/styles/colors';
+import history from './../history.js';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
-import NewsContainer from './news/newsContainer.jsx';
-import ShopContainer from './shop/shopContainer.jsx';
 
 const styles = {
   container: {
@@ -19,40 +17,50 @@ const styles = {
   }
 };
 
-const Main = React.createClass({
+class Main extends React.Component {
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState: function() {
-    return {
-      muiTheme: ThemeManager.getMuiTheme(CustomTheme),
-      tabSelected: 0
+  constructor() {
+    super();
+    this.state = {
+      muiTheme: ThemeManager.getMuiTheme(CustomTheme)
     };
-  },
 
-  getChildContext: function() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      value: this.props.location.pathname
+    });
+  }
+
+  handleChange(value) {
+    this.setState({
+      value: value
+    });
+    history.replaceState(null, value);
+  }
 
   render() {
     return (
       <div style={styles.container}>
-        <Tabs initialSelectedIndex={1}>
-          <Tab label="ニュース" style={styles.tab}>
-            <NewsContainer />
-          </Tab>
-          <Tab label="たべる" style={styles.tab}>
-            <ShopContainer />
-          </Tab>
-          <Tab label="つくる" style={styles.tab} />
+        <Tabs value={this.state.value}
+              onChange={this.handleChange}>
+          <Tab label="ニュース" style={styles.tab} value="/" />
+          <Tab label="お店一覧" style={styles.tab} value="/shops" />
         </Tabs>
+        {this.props.children}
       </div>
     );
   }
-});
+};
 
-export default Main;
+Main.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
+
+Main.contextTypes = {
+  router: React.PropTypes.object
+};
+
+module.exports = Main;

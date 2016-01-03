@@ -7,5 +7,9 @@ module.exports = {
     });
     var m = moment(date);
     return m.format("MM/DD (ddd)");
+  },
+
+  isExSmallDev(window) {
+    return window.innerWidth < 768;
   }
 };
