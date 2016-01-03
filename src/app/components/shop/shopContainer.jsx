@@ -45,7 +45,7 @@ const ShopContainer = React.createClass({
     window.removeEventListener('resize', this.handleResize);
   },
 
-    handleOnSelect(i) {
+  handleOnSelect(i) {
     this.setState({
       detailMode: true
     });
@@ -61,6 +61,7 @@ const ShopContainer = React.createClass({
       detail.photo = place.photos ? place.photos[0].getUrl({maxWidth: 400}) : '';
       detail.mapUrl = place.url;
       detail.website = place.website;
+      detail.location = place.geometry.location;
       this.setState({
         detail: detail
       });
@@ -142,6 +143,7 @@ const ShopContainer = React.createClass({
                       website={this.state.detail.website}
                       mapUrl={this.state.detail.mapUrl}
                       photo={this.state.detail.photo}
+                      location={this.state.detail.location}
                       _handleOnClose={this.handleOnUnSelect}
           />
         </div>

@@ -1,8 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Colors from 'material-ui/lib/styles/colors';
 import IconButton from 'material-ui/lib/icon-button';
 import KeyboardArrowLeft from 'material-ui/lib/svg-icons/hardware/keyboard-arrow-left';
 import utils from './../../utils.js';
+import ShopDetailMap from './shopDetailMap.jsx';
 
 const styles = {
   photoFrame: {
@@ -71,6 +73,12 @@ const ShopDetail = React.createClass({
     }
   },
 
+  renderMap() {
+    if(this.props.location) {
+      return <ShopDetailMap location={this.props.location}/>;
+    }
+  },
+
   render() {
     var phoneNumberLink = '';
     if(this.props.tel) {
@@ -84,6 +92,7 @@ const ShopDetail = React.createClass({
         <p>{this.props.address}</p>
         <p><a href={phoneNumberLink}>{this.props.tel}</a></p>
         <p><a href={this.props.website}>{this.props.website}</a></p>
+        {this.renderMap()}
         {this.renderImage()}
         </div>
      </div>
