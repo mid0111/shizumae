@@ -1,269 +1,421 @@
 [
     {
-        "address": "静岡市葵区人宿町 2-4-5", 
-        "name": "福助", 
-        "placeId": "ChIJ0cyw-B9KGmAR3fxI7tTUH1k", 
-        "tel": "054-253-3288", 
+        "address": "静岡市葵区人宿町 2-4-5",
+        "location": {
+            "lat": 34.9722957,
+            "lng": 138.3789183
+        },
+        "name": "福助",
+        "placeId": "ChIJ0cyw-B9KGmAR3fxI7tTUH1k",
+        "tel": "054-253-3288",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市葵区七間町 16-10", 
-        "name": "乃だや", 
-        "placeId": "ChIJB9QvV_VJGmARptu_adF5ogc", 
-        "tel": "054-254-2919", 
+        "address": "静岡市葵区七間町 16-10",
+        "location": {
+            "lat": 34.9719096,
+            "lng": 138.3793655
+        },
+        "name": "乃だや",
+        "placeId": "ChIJB9QvV_VJGmARptu_adF5ogc",
+        "tel": "054-254-2919",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市葵区昭和町 3-5 昭和ビル", 
-        "name": "居酒屋 たぬき", 
-        "placeId": "ChIJY6pg0PVJGmARngda9aP0oes", 
-        "tel": "054-253-1117", 
+        "address": "静岡市葵区昭和町 3-5 昭和ビル",
+        "location": {
+            "lat": 34.9720687,
+            "lng": 138.3833617
+        },
+        "name": "居酒屋 たぬき",
+        "placeId": "ChIJY6pg0PVJGmARngda9aP0oes",
+        "tel": "054-253-1117",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市葵区常盤町 1-2-1 フレンド久喜ビル1F", 
-        "concool1": true, 
-        "name": "食彩 岩生", 
-        "placeId": "ChIJjV6gk_VJGmARbg6nbQ4S3lk", 
-        "tel": "054-221-4561", 
+        "address": "静岡市葵区常盤町 1-2-1 フレンド久喜ビル1F",
+        "concool1": true,
+        "location": {
+            "lat": 34.9700456,
+            "lng": 138.3813349
+        },
+        "name": "食彩 岩生",
+        "placeId": "ChIJjV6gk_VJGmARbg6nbQ4S3lk",
+        "tel": "054-221-4561",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市葵区両替町 2-5-8 新加茂川ビル2F", 
-        "name": "くいもんや 華音", 
-        "placeId": "ChIJ2wyR4vVJGmARIfeJfhgPRZs", 
-        "tel": "054-273-8591", 
+        "address": "静岡市葵区両替町 2-5-8 新加茂川ビル2F",
+        "location": {
+            "lat": 34.9733699,
+            "lng": 138.3838295
+        },
+        "name": "くいもんや 華音",
+        "placeId": "ChIJ2wyR4vVJGmARIfeJfhgPRZs",
+        "tel": "054-273-8591",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市葵区紺屋町 12-14 クニヨシビル1F", 
-        "name": "樹", 
-        "placeId": "ChIJixETZfZJGmARKbHvjQDmdFk", 
-        "tel": "054-272-2236", 
+        "address": "静岡市葵区紺屋町 12-14 クニヨシビル1F",
+        "location": {
+            "lat": 34.9725372,
+            "lng": 138.3845701
+        },
+        "name": "樹",
+        "placeId": "ChIJixETZfZJGmARKbHvjQDmdFk",
+        "tel": "054-272-2236",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市葵区相生町 14-27 相生スカイビル", 
-        "name": "かどや", 
-        "placeId": "ChIJqd13TUm1G2ARwwGVUFAFdmU", 
-        "tel": "054-251-0859", 
+        "address": "静岡市葵区相生町 14-27 相生スカイビル",
+        "location": {
+            "lat": 34.9769639,
+            "lng": 138.3924443
+        },
+        "name": "かどや",
+        "placeId": "ChIJqd13TUm1G2ARwwGVUFAFdmU",
+        "tel": "054-251-0859",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市葵区西草深町 28-4", 
-        "name": "あさひ", 
-        "placeId": "ChIJf-XeoD1KGmARJJ-sOP34hmU", 
-        "tel": "054-245-6983", 
+        "address": "静岡市葵区西草深町 28-4",
+        "location": {
+            "lat": 34.9828833,
+            "lng": 138.3773709
+        },
+        "name": "あさひ",
+        "placeId": "ChIJf-XeoD1KGmARJJ-sOP34hmU",
+        "tel": "054-245-6983",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市葵区人宿町 1-3-17", 
-        "name": "寿し市", 
-        "placeId": "ChIJR2lejh9KGmARuo_rfJFCAI4", 
-        "tel": "054-252-0456", 
+        "address": "静岡市葵区人宿町 1-3-17",
+        "location": {
+            "lat": 34.9736622,
+            "lng": 138.3793433
+        },
+        "name": "寿し市",
+        "placeId": "ChIJR2lejh9KGmARuo_rfJFCAI4",
+        "tel": "054-252-0456",
         "type": "寿司"
-    }, 
+    },
     {
-        "address": "静岡市葵区人宿町 1-3-12 森田ビル 102号", 
-        "name": "Razza Rossa", 
-        "placeId": "ChIJWfBwjR9KGmAR6HjvwtRanuU", 
-        "tel": "054-205-8444", 
+        "address": "静岡市葵区人宿町 1-3-12 森田ビル 102号",
+        "location": {
+            "lat": 34.9734587,
+            "lng": 138.3794251
+        },
+        "name": "Razza Rossa",
+        "placeId": "ChIJWfBwjR9KGmAR6HjvwtRanuU",
+        "tel": "054-205-8444",
         "type": "レストラン"
-    }, 
+    },
     {
-        "address": "静岡市葵区鷹匠 2-15-10 山梨ビル1F", 
-        "name": "NEO TABLA Zappa", 
-        "placeId": "ChIJn7prowJKGmARFhcVFGBwLCA", 
-        "tel": "054-253-5255", 
+        "address": "静岡市葵区鷹匠 2-15-10 山梨ビル1F",
+        "location": {
+            "lat": 34.9770161,
+            "lng": 138.3898324
+        },
+        "name": "NEO TABLA Zappa",
+        "placeId": "ChIJn7prowJKGmARFhcVFGBwLCA",
+        "tel": "054-253-5255",
         "type": "レストラン"
-    }, 
+    },
     {
-        "address": "静岡市葵区七間町 13-13", 
-        "name": "三日月", 
-        "placeId": "ChIJx_M7ffVJGmARlL-2SKfrbWY", 
-        "tel": "054-253-0447", 
+        "address": "静岡市葵区七間町 13-13",
+        "location": {
+            "lat": 34.9726679,
+            "lng": 138.3807876
+        },
+        "name": "三日月",
+        "placeId": "ChIJx_M7ffVJGmARlL-2SKfrbWY",
+        "tel": "054-253-0447",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区七間町 9-5 トレンズビル1F奥", 
-        "name": "料理と咲け とが路", 
-        "placeId": "ChIJ2zqPf_VJGmARC0aLmP8a3HI", 
-        "tel": "054-273-5218", 
+        "address": "静岡市葵区七間町 9-5 トレンズビル1F奥",
+        "location": {
+            "lat": 34.9728873,
+            "lng": 138.381332
+        },
+        "name": "料理と咲け とが路",
+        "placeId": "ChIJ2zqPf_VJGmARC0aLmP8a3HI",
+        "tel": "054-273-5218",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区昭和町 3-1 静岡昭和町ビル101号", 
-        "name": "割烹・海さか", 
-        "placeId": "ChIJVfsf0fVJGmARHw5qsJkwFPs", 
-        "tel": "054-250-2685", 
+        "address": "静岡市葵区昭和町 3-1 静岡昭和町ビル101号",
+        "location": {
+            "lat": 34.97201039999999,
+            "lng": 138.3834787
+        },
+        "name": "割烹・海さか",
+        "placeId": "ChIJVfsf0fVJGmARHw5qsJkwFPs",
+        "tel": "054-250-2685",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区紺屋町 5-4", 
-        "name": "たかの", 
-        "placeId": "ChIJzQboXvZJGmARm2iCG2n0U-w", 
-        "tel": "054-251-0131", 
+        "address": "静岡市葵区紺屋町 5-4",
+        "location": {
+            "lat": 34.9725512,
+            "lng": 138.3853289
+        },
+        "name": "たかの",
+        "placeId": "ChIJzQboXvZJGmARm2iCG2n0U-w",
+        "tel": "054-251-0131",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区紺屋町 7-14", 
-        "name": "菊正", 
-        "placeId": "ChIJCXF0rvdJGmAR-3UrXXPu4hc", 
-        "tel": "054-253-1586", 
+        "address": "静岡市葵区紺屋町 7-14",
+        "location": {
+            "lat": 34.9734206,
+            "lng": 138.3866732
+        },
+        "name": "菊正",
+        "placeId": "ChIJCXF0rvdJGmAR-3UrXXPu4hc",
+        "tel": "054-253-1586",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区昭府 1-10-25", 
-        "name": "菖蒲", 
-        "placeId": "ChIJb8KkW1f8GmARInMENtkWWaE", 
-        "tel": "054-272-5120", 
+        "address": "静岡市葵区昭府 1-10-25",
+        "location": {
+            "lat": 34.9963817,
+            "lng": 138.3701462
+        },
+        "name": "菖蒲",
+        "placeId": "ChIJb8KkW1f8GmARInMENtkWWaE",
+        "tel": "054-272-5120",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区人宿町鷹匠 2-5-12", 
-        "name": "てんぷら成生", 
-        "placeId": "ChIJR6zXMR1KGmARmn-EMSG7t7Q", 
-        "tel": "054-273-0703", 
+        "address": "静岡市葵区人宿町鷹匠 2-5-12",
+        "location": {
+            "lat": 34.9720263,
+            "lng": 138.3784434
+        },
+        "name": "てんぷら成生",
+        "placeId": "ChIJR6zXMR1KGmARmn-EMSG7t7Q",
+        "tel": "054-273-0703",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区鷹匠 3-22-5", 
-        "name": "魚弥長久", 
-        "placeId": "ChIJtxZd7gJKGmARvSMDmvLgYMo", 
-        "tel": "054-255-8886", 
+        "address": "静岡市葵区鷹匠 3-22-5",
+        "location": {
+            "lat": 34.9783562,
+            "lng": 138.3905782
+        },
+        "name": "魚弥長久",
+        "placeId": "ChIJtxZd7gJKGmARvSMDmvLgYMo",
+        "tel": "054-255-8886",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区伝馬町 8-9", 
-        "name": "魚匠 ととや", 
-        "placeId": "ChIJjWe57vdJGmARO-oBx6sArw4", 
-        "tel": "054-274-0077", 
+        "address": "静岡市葵区伝馬町 8-9",
+        "location": {
+            "lat": 34.9749509,
+            "lng": 138.3879563
+        },
+        "name": "魚匠 ととや",
+        "placeId": "ChIJjWe57vdJGmARO-oBx6sArw4",
+        "tel": "054-274-0077",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区伝馬町 6-1 SHIZUOKA109ビル9F", 
-        "name": "味処 吽治", 
-        "placeId": "ChIJh7xgwPdJGmARtTJNLj5X0L0", 
-        "tel": "054-252-3200", 
+        "address": "静岡市葵区伝馬町 6-1 SHIZUOKA109ビル9F",
+        "location": {
+            "lat": 34.9744677,
+            "lng": 138.3874508
+        },
+        "name": "味処 吽治",
+        "placeId": "ChIJh7xgwPdJGmARtTJNLj5X0L0",
+        "tel": "054-252-3200",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区昭和町 1-4", 
-        "name": "茄子の花 無庵", 
-        "placeId": "ChIJISpLefZJGmARLmjSG5N1_b0", 
-        "tel": "054-273-8855", 
+        "address": "静岡市葵区昭和町 1-4",
+        "location": {
+            "lat": 34.9721429,
+            "lng": 138.3840929
+        },
+        "name": "茄子の花 無庵",
+        "placeId": "ChIJISpLefZJGmARLmjSG5N1_b0",
+        "tel": "054-273-8855",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区七間町 1-15", 
-        "name": "札の辻 坐坊", 
-        "placeId": "ChIJX5KySR5KGmARp32bvQKoy9Y", 
-        "tel": "054-255-3388", 
+        "address": "静岡市葵区七間町 1-15",
+        "location": {
+            "lat": 34.9744343,
+            "lng": 138.3818152
+        },
+        "name": "札の辻 坐坊",
+        "placeId": "ChIJX5KySR5KGmARp32bvQKoy9Y",
+        "tel": "054-255-3388",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市葵区常盤町 1-1-3 グリフィンビル1F", 
-        "name": "萬福酒家", 
-        "placeId": "ChIJ56c76PVJGmAR3eJr1scHX64", 
-        "tel": "054-272-8998", 
+        "address": "静岡市葵区常盤町 1-1-3 グリフィンビル1F",
+        "location": {
+            "lat": 34.9726133,
+            "lng": 138.3831279
+        },
+        "name": "萬福酒家",
+        "placeId": "ChIJ56c76PVJGmAR3eJr1scHX64",
+        "tel": "054-272-8998",
         "type": "中華"
-    }, 
+    },
     {
-        "address": "静岡市葵区城北 2-2-19", 
-        "name": "むさし", 
-        "placeId": "ChIJvf56_3BKGmAR8FjIAGdPhds", 
-        "tel": "054-247-1911", 
+        "address": "静岡市葵区城北 2-2-19",
+        "location": {
+            "lat": 35.0024588,
+            "lng": 138.3913774
+        },
+        "name": "むさし",
+        "placeId": "ChIJvf56_3BKGmAR8FjIAGdPhds",
+        "tel": "054-247-1911",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市葵区羽鳥 6-3-19", 
-        "name": "やま宮", 
-        "placeId": "ChIJtR4BdZlLGmARZM7iXNEOJiM", 
-        "tel": "054-277-0170", 
+        "address": "静岡市葵区羽鳥 6-3-19",
+        "location": {
+            "lat": 34.9834771,
+            "lng": 138.3350809
+        },
+        "name": "やま宮",
+        "placeId": "ChIJtR4BdZlLGmARZM7iXNEOJiM",
+        "tel": "054-277-0170",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市駿河区南町 7-9 静雅ビル1F", 
-        "name": "みなみの勝手場 和夢", 
-        "placeId": "ChIJ51WynfBJGmAR967o1ckr9ug", 
-        "tel": "054-283-1756", 
+        "address": "静岡市駿河区南町 7-9 静雅ビル1F",
+        "location": {
+            "lat": 34.9699627,
+            "lng": 138.3886981
+        },
+        "name": "みなみの勝手場 和夢",
+        "placeId": "ChIJ51WynfBJGmAR967o1ckr9ug",
+        "tel": "054-283-1756",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市駿河区稲川 3-6-24", 
-        "name": "三六", 
-        "placeId": "ChIJcxOtYONJGmARHZuSL6keTE4", 
-        "tel": "054-282-7987", 
+        "address": "静岡市駿河区稲川 3-6-24",
+        "location": {
+            "lat": 34.9680214,
+            "lng": 138.3941338
+        },
+        "name": "三六",
+        "placeId": "ChIJcxOtYONJGmARHZuSL6keTE4",
+        "tel": "054-282-7987",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市駿河区馬渕 4-14-5", 
-        "name": "此花", 
-        "placeId": "ChIJadXdH-ZJGmAREfp-U5stpTU", 
-        "tel": "080-2643-3388", 
+        "address": "静岡市駿河区馬渕 4-14-5",
+        "location": {
+            "lat": 34.9612498,
+            "lng": 138.3887122
+        },
+        "name": "此花",
+        "placeId": "ChIJadXdH-ZJGmAREfp-U5stpTU",
+        "tel": "080-2643-3388",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市駿河区中田本町 17-18", 
-        "name": "炙り焼＆銘酒 えん", 
-        "placeId": "ChIJkXqNGNlJGmARWclBMUSIXo4", 
-        "tel": "054-284-6620", 
+        "address": "静岡市駿河区中田本町 17-18",
+        "location": {
+            "lat": 34.95503679999999,
+            "lng": 138.3959423
+        },
+        "name": "炙り焼＆銘酒 えん",
+        "placeId": "ChIJkXqNGNlJGmARWclBMUSIXo4",
+        "tel": "054-284-6620",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市駿河区さつき町 6-10", 
-        "name": "旬ごよみ鳥幸さつき町店", 
-        "placeId": "ChIJHZzFAwI2GmAREjGvuTrPCe8", 
-        "tel": "054-289-5630", 
+        "address": "静岡市駿河区さつき町 6-10",
+        "location": {
+            "lat": 34.9756762,
+            "lng": 138.3991747
+        },
+        "name": "旬ごよみ鳥幸さつき町店",
+        "placeId": "ChIJHZzFAwI2GmAREjGvuTrPCe8",
+        "tel": "054-289-5630",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市駿河区南町 10-14 オラシオン南町Ⅱ1F", 
-        "name": "ル・コンテ", 
-        "placeId": "ChIJxfNaZPpJGmAR9iEY_SvbWRw", 
-        "tel": "054-266-3886", 
+        "address": "静岡市駿河区南町 10-14 オラシオン南町Ⅱ1F",
+        "location": {
+            "lat": 34.96999,
+            "lng": 138.3896473
+        },
+        "name": "ル・コンテ",
+        "placeId": "ChIJxfNaZPpJGmAR9iEY_SvbWRw",
+        "tel": "054-266-3886",
         "type": "レストラン"
-    }, 
+    },
     {
-        "address": "静岡市駿河区南町 3-2", 
-        "name": "十千花前", 
-        "placeId": "ChIJ34nQgfBJGmARiH9VoFuLIxw", 
-        "tel": "054-280-0888", 
+        "address": "静岡市駿河区南町 3-2",
+        "location": {
+            "lat": 34.9694322,
+            "lng": 138.3888092
+        },
+        "name": "十千花前",
+        "placeId": "ChIJ34nQgfBJGmARiH9VoFuLIxw",
+        "tel": "054-280-0888",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市駿河区南町 8-8", 
-        "name": "二光", 
-        "placeId": "ChIJ37OXofBJGmARmvmOCSm5jNo", 
-        "tel": "054-285-1234", 
+        "address": "静岡市駿河区南町 8-8",
+        "location": {
+            "lat": 34.9704098,
+            "lng": 138.3885981
+        },
+        "name": "二光",
+        "placeId": "ChIJ37OXofBJGmARmvmOCSm5jNo",
+        "tel": "054-285-1234",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市駿河区泉町 4-27", 
-        "name": "海どん", 
-        "placeId": "ChIJOc6PDfBJGmARL2oO0BtmcLI", 
-        "tel": "054-281-5465", 
+        "address": "静岡市駿河区泉町 4-27",
+        "location": {
+            "lat": 34.9676963,
+            "lng": 138.388251
+        },
+        "name": "海どん",
+        "placeId": "ChIJOc6PDfBJGmARL2oO0BtmcLI",
+        "tel": "054-281-5465",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市駿河区敷地 2-21-7", 
-        "name": "ひめの家", 
-        "placeId": "ChIJzcffPMs3GmARbYgDVpFfqlc", 
-        "tel": "054-237-3776", 
+        "address": "静岡市駿河区敷地 2-21-7",
+        "location": {
+            "lat": 34.9497348,
+            "lng": 138.4155907
+        },
+        "name": "ひめの家",
+        "placeId": "ChIJzcffPMs3GmARbYgDVpFfqlc",
+        "tel": "054-237-3776",
         "type": "和食"
-    }, 
+    },
     {
-        "address": "静岡市駿河区大和田 8-7", 
-        "name": "寿限無", 
-        "placeId": "ChIJc6xTngdJGmARhBWoo9UXq7I", 
-        "tel": "054-259-5842", 
+        "address": "静岡市駿河区大和田 8-7",
+        "location": {
+            "lat": 34.9336891,
+            "lng": 138.3578185
+        },
+        "name": "寿限無",
+        "placeId": "ChIJc6xTngdJGmARhBWoo9UXq7I",
+        "tel": "054-259-5842",
         "type": "居酒屋"
-    }, 
+    },
     {
-        "address": "静岡市清水区蒲原 3-3-10", 
-        "name": "鮨処 やましち", 
-        "placeId": "ChIJKR_DAucsGmAR55zHCxiAQrc", 
-        "tel": "054-388-2339", 
+        "address": "静岡市清水区蒲原 3-3-10",
+        "location": {
+            "lat": 35.1189907,
+            "lng": 138.6057587
+        },
+        "name": "鮨処 やましち",
+        "placeId": "ChIJKR_DAucsGmAR55zHCxiAQrc",
+        "tel": "054-388-2339",
         "type": "寿司"
     }
 ]
