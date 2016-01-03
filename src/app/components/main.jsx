@@ -25,13 +25,14 @@ const Main = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getInitialState() {
+  getInitialState: function() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(CustomTheme)
+      muiTheme: ThemeManager.getMuiTheme(CustomTheme),
+      tabSelected: 0
     };
   },
 
-  getChildContext() {
+  getChildContext: function() {
     return {
       muiTheme: this.state.muiTheme,
     };
