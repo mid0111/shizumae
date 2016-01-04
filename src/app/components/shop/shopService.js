@@ -8,13 +8,16 @@ class ShopService {
   }
 
   static getCurrentPosition() {
+    var defaultLocation = {lat: 34.97147, lon:138.389172};
     return new Promise((resolve, rejected) => {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
           resolve({lat: position.coords.latitude, lon: position.coords.longitude});
+        }, (err) => {
+          resolve(defaultLocation);
         });
       } else {
-        resolve({lat: 34.9809096, lon: 138.3794655});
+        resolve(defaultLocation);
       }
     });
   }

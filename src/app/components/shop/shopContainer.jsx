@@ -16,6 +16,9 @@ const styles = {
     padding: 0,
     paddingBottom: 8
   },
+  secText: {
+    paddingRight: 0
+  },
   distance: {
     fontSize: '0.8em'
   }
@@ -86,6 +89,7 @@ const ShopContainer = React.createClass({
     var style = {
       overflow: 'auto',
       height: this.state.innerHeight - 60,
+      paddingLeft: 16,
       paddingBottom: 30,
       zIndex: 10,
       transition: 'all 450ms',
@@ -93,6 +97,7 @@ const ShopContainer = React.createClass({
     };
     if(!utils.isExSmallDev(window)) {
       style.borderRight = 'solid 1px ' + Colors.grey300;
+      style.width = '33.3%';
     } else {
       style.zIndex = 10;
       style.transition = 'all 450ms';
@@ -111,8 +116,9 @@ const ShopContainer = React.createClass({
           <ListItem
               primaryText={shop.name}
               secondaryText={
-                 <p>
+                 <p style={styles.secText}>
                    {shop.address}<br/>
+                   <span style={styles.distance}>{shop.type}　</span>
                    <span style={styles.distance}>{shop.distance.toFixed(1)} km</span>
                  </p>
               }
@@ -140,7 +146,7 @@ const ShopContainer = React.createClass({
     return (
       <div className="container" style={styles.container}>
         <div className="row">
-          <div className="col-md-4" style={this.getListColStyle()}>
+          <div style={this.getListColStyle()}>
             <List subheader="しずまえ鮮魚取扱店">
               {this.getRenderItems()}
             </List>
