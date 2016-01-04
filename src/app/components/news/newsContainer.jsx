@@ -24,16 +24,13 @@ const NewsContainer = React.createClass({
     this.setState({innerHeight: window.innerHeight});
   },
 
-  componentDidMount: function() {
-    window.addEventListener('resize', this.handleResize);
-  },
-
   componentWillUnmount: function() {
     window.removeEventListener('resize', this.handleResize);
   },
 
-
   componentDidMount: function() {
+    window.addEventListener('resize', this.handleResize);
+
     window.fbAsyncInit = function() {
       FB.init({
         appId      : '1523396571294082',

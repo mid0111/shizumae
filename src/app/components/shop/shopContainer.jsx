@@ -5,9 +5,7 @@ import Divider from 'material-ui/lib/divider';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ShopDetail from './shopDetail.jsx';
 import utils from './../../utils.js';
-
-// TODO サーバから取得
-const shops = require('./../../../../data/shop.json');
+import ShopService from './shopService.js';
 
 const styles = {
   container: {
@@ -26,10 +24,17 @@ const styles = {
 const ShopContainer = React.createClass({
 
   getInitialState() {
+
+    ShopService.query().then((shops) => {
+      this.setState({
+        shops: shops
+      });
+    });
     return {
       innerHeight: window.innerHeight,
       detail: {},
-      detailMode: false
+      detailMode: false,
+      shops: []
     };
   },
 
@@ -50,9 +55,15 @@ const ShopContainer = React.createClass({
       detailMode: true
     });
     var request = {
-      placeId: shops[i].placeId
+      placeId: this.state.shops[i].placeId
     };
-    var detail = shops[i];
+    var detail = this.state.shops[i];
+    var location = {
+      lat: detail.location.lat,
+      lng: detail.location.lon || detail.location.lng
+    }
+    detail.location = location;
+
     this.setState({
       detail: detail
     });
@@ -61,7 +72,6 @@ const ShopContainer = React.createClass({
       detail.photo = place.photos ? place.photos[0].getUrl({maxWidth: 400}) : '';
       detail.mapUrl = place.url;
       detail.website = place.website;
-      detail.location = place.geometry.location;
       this.setState({
         detail: detail
       });
@@ -96,20 +106,20 @@ const ShopContainer = React.createClass({
   },
 
   getRenderItems() {
-    return shops.map((shop, i) => {
+    return this.state.shops.map((shop, i) => {
       var item = (
           <ListItem
               primaryText={shop.name}
               secondaryText={
                  <p>
                    {shop.address}<br/>
-                   <span style={styles.distance}>1km</span>
+                   <span style={styles.distance}>{shop.distance.toFixed(1)} km</span>
                  </p>
               }
               secondaryTextLines={2}
               />
       );
-      if(i == shops.length - 1) {
+      if(i == this.state.shops.length - 1) {
         return (
           <div key={i}  onClick={this.handleOnSelect.bind(this,i)}>
             {item}
