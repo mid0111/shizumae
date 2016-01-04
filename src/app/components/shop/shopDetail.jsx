@@ -7,13 +7,6 @@ import utils from './../../utils.js';
 import ShopDetailMap from './shopDetailMap.jsx';
 
 const styles = {
-  photoFrame: {
-    height: 270,
-    overflow: 'hidden'
-  },
-  photo: {
-    width: 400
-  },
   navBar: {
     position: 'absolute',
     top: 0,
@@ -32,35 +25,54 @@ const styles = {
     top: 48,
     paddingLeft: 30,
     paddingRight: 30
+  },
+  navGMap: {
+    paddingBottom: 40
   }
 };
 
 const ShopDetail = React.createClass({
 
-  getContainerStyle() {
-    if(utils.isExSmallDev(window)) {
-      return {
-        width: '100%',
-        position: 'fixed',
-        left: 0,
-        top: 48,
-        padding: 0
-      };
-    } else {
-      return {
-        paddingLeft: 30
-      };
-    }
+  getInitialState() {
+    return {
+      innerHeight: window.innerHeight
+    };
   },
 
-  renderImage() {
-    if(this.props.photo) {
-      return (
-        <div style={styles.photoFrame}>
-          <img style={styles.photo} src={this.props.photo}/>
-        </div>
-      );
+  getContainerStyle() {
+    var style = {
+      overflow: 'auto',
+      height: this.state.innerHeight - 48,
+      zIndex: 0
+    };
+    if(utils.isExSmallDev(window)) {
+      style.width = '100%';
+      style.position = 'fixed';
+      style.left = 0;
+      style.top = 48;
+      style.padding = 0;
+    } else {
+      style.float = 'left';
+      style.width = '66.7%';
+      style.paddingLeft = 30;
     }
+
+    if(this.props.hidden) {
+      style.width = 0;
+    }
+    return style;
+  },
+
+  handleResize(e) {
+    this.setState({innerHeight: window.innerHeight});
+  },
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  },
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
   },
 
   renderNavBar() {
@@ -85,7 +97,7 @@ const ShopDetail = React.createClass({
       phoneNumberLink = 'tel:' + this.props.tel.replace(/-/g, '');
     }
     return (
-      <div className="col-md-8" style={this.getContainerStyle()}>
+      <div style={this.getContainerStyle()}>
         {this.renderNavBar()}
         <div style={styles.contents}>
         <h2>{this.props.name}</h2>
@@ -93,7 +105,7 @@ const ShopDetail = React.createClass({
         <p><a href={phoneNumberLink}>{this.props.tel}</a></p>
         <p><a href={this.props.website}>{this.props.website}</a></p>
         {this.renderMap()}
-        {this.renderImage()}
+        <a target="_blank" href={this.props.mapUrl} style={styles.navGMap}>Google Mapで表示</a>
         </div>
      </div>
     );

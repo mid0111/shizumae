@@ -28,11 +28,6 @@ const ShopContainer = React.createClass({
 
   getInitialState() {
 
-    ShopService.query().then((shops) => {
-      this.setState({
-        shops: shops
-      });
-    });
     return {
       innerHeight: window.innerHeight,
       detail: {},
@@ -47,6 +42,11 @@ const ShopContainer = React.createClass({
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
+    ShopService.query().then((shops) => {
+      this.setState({
+        shops: shops
+      });
+    });
   },
 
   componentWillUnmount() {
@@ -72,7 +72,6 @@ const ShopContainer = React.createClass({
     });
     var service = new google.maps.places.PlacesService(window.document.getElementById('map'));
     service.getDetails(request, function (place, status) {
-      detail.photo = place.photos ? place.photos[0].getUrl({maxWidth: 400}) : '';
       detail.mapUrl = place.url;
       detail.website = place.website;
       this.setState({
@@ -98,6 +97,7 @@ const ShopContainer = React.createClass({
     if(!utils.isExSmallDev(window)) {
       style.borderRight = 'solid 1px ' + Colors.grey300;
       style.width = '33.3%';
+      style.float = 'left';
     } else {
       style.zIndex = 10;
       style.transition = 'all 450ms';
@@ -158,9 +158,9 @@ const ShopContainer = React.createClass({
                       tel={this.state.detail.tel}
                       website={this.state.detail.website}
                       mapUrl={this.state.detail.mapUrl}
-                      photo={this.state.detail.photo}
                       location={this.state.detail.location}
                       _handleOnClose={this.handleOnUnSelect}
+                      hidden = {!this.state.detailMode}
           />
         </div>
       </div>
