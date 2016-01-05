@@ -22,6 +22,9 @@ const styles = {
   },
   distance: {
     fontSize: '0.9em'
+  },
+  shopIcon: {
+    width: '1em'
   }
 };
 
@@ -74,8 +77,6 @@ const ShopContainer = React.createClass({
     var service = new google.maps.places.PlacesService(window.document.getElementById('map'));
     service.getDetails(request, function (place, status) {
       detail.mapUrl = place.url;
-      detail.website = place.website;
-      detail.photos = place.photos;
       this.setState({
         detail: detail
       });
@@ -112,6 +113,28 @@ const ShopContainer = React.createClass({
     return style;
   },
 
+  getIcon(shopType) {
+    var url = 'images/';
+    switch(shopType) {
+      case '居酒屋':
+        url += 'shrimp.png';
+        break;
+      case '和食':
+        url += 'japanese.png';
+        break;
+      case 'レストラン':
+        url += 'restaurant.png';
+        break;
+      case '寿司':
+        url += 'sushi.png';
+        break;
+      case '中華':
+        url += 'chinese.png';
+        break;
+    }
+    return url;
+  },
+
   getRenderItems() {
     return this.state.shops.map((shop, i) => {
       var item = (
@@ -120,7 +143,7 @@ const ShopContainer = React.createClass({
               secondaryText={
                  <p style={styles.secText}>
                    {shop.address}<br/>
-                   <span style={styles.distance}>{shop.type}　</span>
+                   <span style={styles.distance}><img src={this.getIcon(shop.type)} style={styles.shopIcon} /> {shop.type}　</span>
                    <span style={styles.distance}>{shop.distance.toFixed(1)} km</span>
                  </p>
               }
@@ -158,9 +181,7 @@ const ShopContainer = React.createClass({
                       type={this.state.detail.type}
                       address={this.state.detail.address}
                       tel={this.state.detail.tel}
-                      website={this.state.detail.website}
                       mapUrl={this.state.detail.mapUrl}
-                      photos={this.state.detail.photos}
                       location={this.state.detail.location}
                       _handleOnClose={this.handleOnUnSelect}
                       hidden = {!this.state.detailMode}

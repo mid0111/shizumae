@@ -27,9 +27,6 @@ const styles = {
     paddingRight: 30,
     fontSize: '0.9em'
   },
-  photo: {
-    width: '100%'
-  },
   navGMap: {
     paddingBottom: 40
   }
@@ -105,18 +102,6 @@ const ShopDetail = React.createClass({
     }
   },
 
-  renderImage() {
-    if(this.props.photos) {
-      return <img src={this.props.photos[0].getUrl({maxWidth: window.innerWidth})} style={styles.photo} />;
-    }
-  },
-
-  renderWebLink() {
-    if(this.props.website) {
-      return <p><a target="_blank" href={this.props.website}>Web サイトを表示</a></p>;
-    }
-  },
-
   render() {
     var phoneNumberLink = '';
     if(this.props.tel) {
@@ -131,10 +116,6 @@ const ShopDetail = React.createClass({
           <p><a href={phoneNumberLink}>{this.props.tel}</a></p>
           {this.renderMap()}
           <a target="_blank" href={this.props.mapUrl} style={styles.navGMap}>ナビを開始</a>
-          <p />
-          {this.renderImage()}
-          <p />
-          {this.renderWebLink()}
         </div>
       </div>
     );
