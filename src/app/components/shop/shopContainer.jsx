@@ -17,10 +17,11 @@ const styles = {
     paddingBottom: 8
   },
   secText: {
-    paddingRight: 0
+    paddingRight: 0,
+    fontSize: '0.8em'
   },
   distance: {
-    fontSize: '0.8em'
+    fontSize: '0.9em'
   }
 };
 

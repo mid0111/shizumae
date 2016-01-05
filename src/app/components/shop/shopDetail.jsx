@@ -24,7 +24,8 @@ const styles = {
     position: 'relative',
     top: 48,
     paddingLeft: 30,
-    paddingRight: 30
+    paddingRight: 30,
+    fontSize: '0.9em'
   },
   navGMap: {
     paddingBottom: 40
@@ -100,14 +101,13 @@ const ShopDetail = React.createClass({
       <div style={this.getContainerStyle()}>
         {this.renderNavBar()}
         <div style={styles.contents}>
-        <h2>{this.props.name}</h2>
-        <p>{this.props.address}</p>
-        <p><a href={phoneNumberLink}>{this.props.tel}</a></p>
-        <p><a href={this.props.website}>{this.props.website}</a></p>
-        {this.renderMap()}
-        <a target="_blank" href={this.props.mapUrl} style={styles.navGMap}>Google Mapで表示</a>
+          <h3>{this.props.name}</h3>
+          <p>{this.props.address}</p>
+          <p><a href={phoneNumberLink}>{this.props.tel}</a></p>
+          {this.renderMap()}
+          <a target="_blank" href={this.props.mapUrl} style={styles.navGMap}>Google Mapで表示</a>
         </div>
-     </div>
+      </div>
     );
   }
 });
