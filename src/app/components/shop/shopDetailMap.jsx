@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GoogleMap from '../gmapService.js';
 
 const styles = {
   map: {
@@ -10,22 +11,20 @@ const styles = {
 
 const ShopDetailMap = React.createClass({
 
-  componentDidMount() {
-    var map = new google.maps.Map(ReactDOM.findDOMNode(this), {
-      center: this.props.location,
-      draggable: false,
-      scrollwheel: false,
-      mapTypeControl: false,
-      streetViewControl: false,
-      zoomControl: false,
-      zoom: 14
-    });
+  getInitialState() {
+    return {
+      location: {}
+    };
+  },
 
-    var marker = new google.maps.Marker({
-      map: map,
-      position: this.props.location,
-      title: 'Hello World!'
-    });
+  componentDidMount() {
+    GoogleMap.getMarker(ReactDOM.findDOMNode(this), this.props.location);
+  },
+
+  componentWillUpdate(nextProps) {
+    if(this.props.location != nextProps.location) {
+      GoogleMap.getMarker(ReactDOM.findDOMNode(this), nextProps.location);
+    }
   },
 
   render() {

@@ -75,6 +75,7 @@ const ShopContainer = React.createClass({
     service.getDetails(request, function (place, status) {
       detail.mapUrl = place.url;
       detail.website = place.website;
+      detail.photos = place.photos;
       this.setState({
         detail: detail
       });
@@ -159,6 +160,7 @@ const ShopContainer = React.createClass({
                       tel={this.state.detail.tel}
                       website={this.state.detail.website}
                       mapUrl={this.state.detail.mapUrl}
+                      photos={this.state.detail.photos}
                       location={this.state.detail.location}
                       _handleOnClose={this.handleOnUnSelect}
                       hidden = {!this.state.detailMode}

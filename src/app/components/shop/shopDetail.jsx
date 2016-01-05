@@ -27,6 +27,9 @@ const styles = {
     paddingRight: 30,
     fontSize: '0.9em'
   },
+  photo: {
+    width: '100%'
+  },
   navGMap: {
     paddingBottom: 40
   }
@@ -43,7 +46,7 @@ const ShopDetail = React.createClass({
   getContainerStyle() {
     var style = {
       overflow: 'auto',
-      height: this.state.innerHeight - 48,
+      height: this.state.innerHeight - 60,
       zIndex: 0
     };
     if(utils.isExSmallDev(window)) {
@@ -62,6 +65,16 @@ const ShopDetail = React.createClass({
       style.width = 0;
     }
     return style;
+  },
+
+  getContentsStyle() {
+    if(utils.isExSmallDev(window)) {
+      return styles.contents;
+    } else {
+      var style = styles.contents;
+      style.top = 10;
+      return style;
+    }
   },
 
   handleResize(e) {
@@ -86,9 +99,21 @@ const ShopDetail = React.createClass({
     }
   },
 
-  renderMap() {
+  renderMap(refresh) {
     if(this.props.location) {
-      return <ShopDetailMap location={this.props.location}/>;
+      return <ShopDetailMap location={this.props.location} refresh={refresh} />;
+    }
+  },
+
+  renderImage() {
+    if(this.props.photos) {
+      return <img src={this.props.photos[0].getUrl({maxWidth: window.innerWidth})} style={styles.photo} />;
+    }
+  },
+
+  renderWebLink() {
+    if(this.props.website) {
+      return <p><a target="_blank" href={this.props.website}>Web サイトを表示</a></p>;
     }
   },
 
@@ -100,12 +125,16 @@ const ShopDetail = React.createClass({
     return (
       <div style={this.getContainerStyle()}>
         {this.renderNavBar()}
-        <div style={styles.contents}>
+        <div style={this.getContentsStyle()}>
           <h3>{this.props.name}</h3>
           <p>{this.props.address}</p>
           <p><a href={phoneNumberLink}>{this.props.tel}</a></p>
           {this.renderMap()}
-          <a target="_blank" href={this.props.mapUrl} style={styles.navGMap}>Google Mapで表示</a>
+          <a target="_blank" href={this.props.mapUrl} style={styles.navGMap}>ナビを開始</a>
+          <p />
+          {this.renderImage()}
+          <p />
+          {this.renderWebLink()}
         </div>
       </div>
     );
