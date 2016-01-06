@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Router, Route, IndexRoute, Link } from 'react-router';
+import Main from './components/main.jsx';
 
 //Needed for onTouchTap
 //Can go away when react 1.0 release
@@ -9,7 +9,4 @@ import { Router, Route, IndexRoute, Link } from 'react-router';
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-// router settings
-import routes from './routes.js';
-import history from './history.js';
-render(<Router history={history} routes={routes} />, document.getElementById('app'));
+render(<Main />, document.getElementById('app'));

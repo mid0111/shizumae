@@ -40,6 +40,18 @@ const ShopContainer = React.createClass({
     };
   },
 
+  contextTypes: {
+    focus: React.PropTypes.bool
+  },
+
+  childContextTypes: {
+    focus: React.PropTypes.bool
+  },
+
+  getChildContext() {
+    return {focus: this.props.focus};
+  },
+
   handleResize(e) {
     this.setState({innerHeight: window.innerHeight});
   },
@@ -55,6 +67,12 @@ const ShopContainer = React.createClass({
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
+  },
+
+  componentWillUpdate(nextProps) {
+    if(nextProps.focus != this.props.focus && nextProps.focus == false) {
+      this.handleOnUnSelect();
+    }
   },
 
   handleOnSelect(i) {
@@ -168,6 +186,10 @@ const ShopContainer = React.createClass({
   },
 
   render() {
+    if(!this.props.focus) {
+      return null;
+    }
+
     return (
       <div className="container" style={styles.container}>
         <div className="row">

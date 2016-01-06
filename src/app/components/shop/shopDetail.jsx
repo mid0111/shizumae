@@ -40,6 +40,10 @@ const ShopDetail = React.createClass({
     };
   },
 
+  contextTypes: {
+    focus: React.PropTypes.bool
+  },
+
   getContainerStyle() {
     var style = {
       overflow: 'auto',
@@ -103,6 +107,10 @@ const ShopDetail = React.createClass({
   },
 
   render() {
+    if(!this.context.focus) {
+      return null;
+    }
+
     var phoneNumberLink = '';
     if(this.props.tel) {
       phoneNumberLink = 'tel:' + this.props.tel.replace(/-/g, '');

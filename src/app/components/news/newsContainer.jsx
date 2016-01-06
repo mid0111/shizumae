@@ -1,7 +1,6 @@
 import React from 'react';
 import NewsFeeds from './newsFeeds.jsx';
 import NewsHeader from './newsHeader.jsx';
-import FlatButton from 'material-ui/lib/flat-button';
 import utils from './../../utils.js';
 
 const styles = {
@@ -20,29 +19,17 @@ const NewsContainer = React.createClass({
     };
   },
 
-  handleResize: function(e) {
+  handleResize(e) {
     this.setState({innerHeight: window.innerHeight});
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
+    this.ignoreLastFetch = true;
   },
 
-  componentDidMount: function() {
-    window.addEventListener('resize', this.handleResize);
-
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '1523396571294082',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v2.5'
-      });
-
-      FB.getLoginStatus(function(response) {
-        this.statusChangeCallback(response);
-      }.bind(this));
-    }.bind(this);
+  componentDidMount() {
+    this.asyncInitFb();
 
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -53,8 +40,24 @@ const NewsContainer = React.createClass({
     }(document, 'script', 'facebook-jssdk'));
   },
 
-  statusChangeCallback: function(response) {
-    if (response.status === 'connected') {
+  asyncInitFb() {
+    window.addEventListener('resize', this.handleResize);
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1523396571294082',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.5'
+      });
+
+      FB.getLoginStatus(this.onStatusChangeCallback);
+      FB.Event.subscribe("auth.authResponseChange", this.onStatusChangeCallback);
+    }.bind(this);
+  },
+
+  onStatusChangeCallback(response) {
+    if(response.status === "connected") {
       this.setState({fbLogin: true});
       this.getFbFeeds();
     }
@@ -66,16 +69,6 @@ const NewsContainer = React.createClass({
         feeds: response.data
       })
     }.bind(this));
-  },
-
-  checkLoginState: function() {
-    FB.getLoginStatus(function(response) {
-      this.statusChangeCallback(response);
-    }.bind(this));
-  },
-
-  _handleFbLogin() {
-    FB.login(this.checkLoginState());
   },
 
   getContainerStyle() {
@@ -93,9 +86,13 @@ const NewsContainer = React.createClass({
           <NewsHeader />
           <div style={styles.login}>
             <p>Facebook にログインして しずまえ のニュースを購読</p>
-            <FlatButton secondary={true} label="ログイン" labelPosition="after"
-                        onClick={this._handleFbLogin}>
-            </FlatButton>
+            <div
+                className="fb-login-button"
+                data-max-rows="1"
+                data-show-faces="false"
+                data-auto-logout-link="false"
+            >
+            </div>
           </div>
         </div>
       )
