@@ -121,9 +121,8 @@ const ShopContainer = React.createClass({
       style.float = 'left';
     } else {
       style.zIndex = 10;
-      style.transition = 'all 450ms';
       if(this.state.detailMode) {
-        style.transform = 'translate3d(-768px, 0px, 0px)';
+        style.transform = 'translate3d(-' + (window.innerWidth * 1.5) + 'px, 0px, 10px)';
       } else {
         style.transform = 'translate3d(0px, 0px, 0px)';
       }
@@ -190,6 +189,21 @@ const ShopContainer = React.createClass({
       return null;
     }
 
+    var lists = null;
+    var detail = null;
+    if(this.state.detailMode) {
+      detail = (
+        <ShopDetail name={this.state.detail.name}
+                    type={this.state.detail.type}
+                    address={this.state.detail.address}
+                    tel={this.state.detail.tel}
+                    mapUrl={this.state.detail.mapUrl}
+                    location={this.state.detail.location}
+                    _handleOnClose={this.handleOnUnSelect}
+                    hidden = {!this.state.detailMode}
+        />
+      );
+    }
     return (
       <div className="container" style={styles.container}>
         <div className="row">
@@ -199,15 +213,7 @@ const ShopContainer = React.createClass({
             </List>
           </div>
           <div id="map" />
-          <ShopDetail name={this.state.detail.name}
-                      type={this.state.detail.type}
-                      address={this.state.detail.address}
-                      tel={this.state.detail.tel}
-                      mapUrl={this.state.detail.mapUrl}
-                      location={this.state.detail.location}
-                      _handleOnClose={this.handleOnUnSelect}
-                      hidden = {!this.state.detailMode}
-          />
+          {detail}
         </div>
       </div>
     );
