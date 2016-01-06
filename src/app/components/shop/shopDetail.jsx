@@ -47,7 +47,7 @@ const ShopDetail = React.createClass({
   getContainerStyle() {
     var style = {
       overflow: 'auto',
-      height: this.state.innerHeight - 60,
+      height: this.state.innerHeight - 48,
       zIndex: 0
     };
     if(utils.isExSmallDev(window)) {

@@ -74,7 +74,7 @@ const NewsContainer = React.createClass({
   getContainerStyle() {
     return {
       overflow: 'auto',
-      height: this.state.innerHeight - 60,
+      height: this.state.innerHeight - 48,
       paddingBottom: 30
     };
   },

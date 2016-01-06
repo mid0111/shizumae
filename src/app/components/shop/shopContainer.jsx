@@ -108,7 +108,7 @@ const ShopContainer = React.createClass({
   getListColStyle() {
     var style = {
       overflow: 'auto',
-      height: this.state.innerHeight - 60,
+      height: this.state.innerHeight - 48,
       paddingLeft: 16,
       paddingBottom: 30,
       zIndex: 10,
