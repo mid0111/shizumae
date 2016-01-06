@@ -22,10 +22,16 @@ class Main extends React.Component {
   constructor() {
     super();
     this.state = {
-      muiTheme: ThemeManager.getMuiTheme(CustomTheme)
+      value: '/'
     };
 
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(CustomTheme),
+    };
   }
 
   componentDidMount() {
