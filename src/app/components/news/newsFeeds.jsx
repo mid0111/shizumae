@@ -50,7 +50,7 @@ const NewsFeeds = React.createClass({
       cursor: 'pointer'
     };
     if(this.state.zoom[i]) {
-      style.hidden = true;
+      style.display = 'none';
     }
     return style;
 
