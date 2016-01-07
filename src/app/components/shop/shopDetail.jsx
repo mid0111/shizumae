@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Colors from 'material-ui/lib/styles/colors';
-import IconButton from 'material-ui/lib/icon-button';
 import KeyboardArrowLeft from 'material-ui/lib/svg-icons/hardware/keyboard-arrow-left';
 import utils from './../../utils.js';
 import ShopDetailMap from './shopDetailMap.jsx';

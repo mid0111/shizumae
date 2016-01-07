@@ -6,10 +6,14 @@
    See browserify.bundleConfigs in gulp/config.js
 */
 
+var argv         = require('yargs').argv;
 var browserify   = require('browserify');
 var watchify     = require('watchify');
 var bundleLogger = require('../util/bundleLogger');
 var gulp         = require('gulp');
+var gulpif       = require('gulp-if');
+var buffer       = require('vinyl-buffer');
+var uglify       = require('gulp-uglify');
 var handleErrors = require('../util/handleErrors');
 var source       = require('vinyl-source-stream');
 var config       = require('../config').browserify;
@@ -29,7 +33,7 @@ gulp.task('browserify', function(callback) {
       // Add file extentions to make optional in your requires
       extensions: config.extensions,
       // Enable source maps!
-      debug: config.debug
+      debug: !argv.production
     });
 
     var bundle = function() {
@@ -40,11 +44,9 @@ gulp.task('browserify', function(callback) {
         .bundle()
         // Report compile errors
         .on('error', handleErrors)
-        // Use vinyl-source-stream to make the
-        // stream gulp compatible. Specifiy the
-        // desired output filename here.
         .pipe(source(bundleConfig.outputName))
-        // Specify the output destination
+        .pipe(buffer())
+        .pipe(gulpif(argv.production, uglify()))
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished);
     };

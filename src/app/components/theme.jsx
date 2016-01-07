@@ -6,7 +6,7 @@ import zIndex from 'material-ui/lib/styles/zIndex';
 export default {
   spacing: Spacing,
   zIndex: zIndex,
-  fontFamily: 'Noto Sans Japanese, sans-serif',
+  fontFamily: '"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", Arial, Helvetica, Verdana, sans-serif',
   palette: {
     primary1Color: Colors.blue500,
     primary2Color: Colors.blue700,

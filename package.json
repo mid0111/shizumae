@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo 'Not implemented yet !!'",
     "start": "gulp",
-    "deploy": "gulp build && gulp s3"
+    "deploy": "gulp build --production && gulp s3"
   },
   "devDependencies": {
     "aws-sdk": "^2.2.26",
@@ -18,16 +18,20 @@
     "browser-sync": "^2.10.1",
     "browserify": "^12.0.1",
     "gulp": "^3.9.0",
+    "gulp-if": "^2.0.0",
     "gulp-notify": "^2.2.0",
     "gulp-s3": "^0.3.0",
+    "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.0.2",
     "pretty-hrtime": "^1.0.1",
     "require-dir": "^0.3.0",
     "through2": "^2.0.0",
     "underscore": "^1.8.3",
+    "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.6.1"
+    "watchify": "^3.6.1",
+    "yargs": "^3.31.0"
   },
   "dependencies": {
     "history": "^1.17.0",
