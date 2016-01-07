@@ -10,7 +10,8 @@ import ShopService from './shopService.js';
 const styles = {
   container: {
     margin: 0,
-    padding: 0
+    padding: 0,
+    width: '100%'
   },
   paper: {
     padding: 0,
@@ -94,6 +95,9 @@ const ShopContainer = React.createClass({
     });
     var service = new google.maps.places.PlacesService(window.document.getElementById('map'));
     service.getDetails(request, function (place, status) {
+      console.log(place);
+      detail.photos = place.photos;
+      detail.website = place.website;
       detail.mapUrl = place.url;
       this.setState({
         detail: detail
@@ -199,6 +203,8 @@ const ShopContainer = React.createClass({
                     tel={this.state.detail.tel}
                     mapUrl={this.state.detail.mapUrl}
                     location={this.state.detail.location}
+                    photos={this.state.detail.photos}
+                    website={this.state.detail.website}
                     _handleOnClose={this.handleOnUnSelect}
                     hidden = {!this.state.detailMode}
         />
