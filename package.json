@@ -34,6 +34,7 @@
     "yargs": "^3.31.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.3.14",
     "history": "^1.17.0",
     "material-ui": "^0.14.0",
     "moment": "^2.10.6",
