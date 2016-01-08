@@ -1,5 +1,6 @@
 import React from 'react';
 import Paper from 'material-ui/lib/paper';
+import CircularProgress from 'material-ui/lib/circular-progress';
 import utils from './../../utils.js';
 
 const styles = {
@@ -77,6 +78,14 @@ const NewsFeeds = React.createClass({
   },
 
   render() {
+    if(this.props.feeds.length <= 0) {
+      return (
+        <div className="text-center" style={{padding: 50}}>
+          <CircularProgress mode="indeterminate" />
+        </div>
+      );
+    }
+
     var feedNodes = this.props.feeds.map((feed, i) => {
       if(feed.message.indexOf('水産漁港課') < 0) {
         return;
