@@ -95,7 +95,6 @@ const ShopContainer = React.createClass({
     });
     var service = new google.maps.places.PlacesService(window.document.getElementById('map'));
     service.getDetails(request, function (place, status) {
-      console.log(place);
       detail.photos = place.photos;
       detail.website = place.website;
       detail.mapUrl = place.url;

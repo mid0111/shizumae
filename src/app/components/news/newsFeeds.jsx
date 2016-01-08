@@ -47,6 +47,7 @@ const NewsFeeds = React.createClass({
       overflow: 'hidden'
     };
     if(this.state.zoom[i]) {
+      style.height = 'auto';
       style.maxHeight = 'none';
     }
     return style;
@@ -97,9 +98,6 @@ const NewsFeeds = React.createClass({
 
       var lines = feed.message.split('\n');
       var formattedMessage = lines.map((line, j) => {
-        if(j > 5) {
-          return;
-        }
         return <p key={j} style={style}>{line}</p>;
       });
 

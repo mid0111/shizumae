@@ -58,7 +58,10 @@ const NewsContainer = React.createClass({
 
   onStatusChangeCallback(response) {
     if(response.status === "connected") {
-      this.setState({fbLogin: true});
+      this.setState({
+        fbLogin: true,
+        initializing: false
+      });
       this.getFbFeeds();
     }
   },
