@@ -45,7 +45,7 @@ const NewsContainer = React.createClass({
 
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '197581620267071',
+        appId      : '1523396571294082',
         cookie     : true,
         xfbml      : true,
         version    : 'v2.5'
@@ -72,11 +72,19 @@ const NewsContainer = React.createClass({
   },
 
   getContainerStyle() {
-    return {
+    var style = {
       overflow: 'auto',
       height: this.state.innerHeight - 48,
+      width: '100%',
+      paddingLeft: 50,
+      paddingRight: 50,
       paddingBottom: 30
     };
+    if(utils.isExSmallDev(window)) {
+      style.paddingLeft = 10;
+      style.paddingRight = 10;
+    }
+    return style;
   },
 
   render() {

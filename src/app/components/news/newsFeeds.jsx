@@ -3,6 +3,10 @@ import Paper from 'material-ui/lib/paper';
 import utils from './../../utils.js';
 
 const styles = {
+  message: {
+    fontSize: 14,
+    lineHeight: 1.3
+  },
   paper: {
     marginTop: 10,
     padding: 20
@@ -31,11 +35,14 @@ const NewsFeeds = React.createClass({
 
   getPreStyle(i) {
     var style = {
-      fontSize: 13,
-      maxHeight: 127.4,
+      fontSize: styles.message.fontSize,
+      lineHeight: styles.message.lineHeight,
+      wordWrap: 'break-word',
+      height: styles.message.fontSize * styles.message.lineHeight * 8,
+      color: '#333',
       backgroundColor: '#fff',
       border: 'none',
-      padding: 2,
+      padding: 0,
       overflow: 'hidden'
     };
     if(this.state.zoom[i]) {
@@ -46,7 +53,8 @@ const NewsFeeds = React.createClass({
 
   getMoreStyle(i) {
     var style = {
-      fontSize: '0.5em',
+      fontSize: '0.8em',
+      marginTop: 10,
       cursor: 'pointer'
     };
     if(this.state.zoom[i]) {
@@ -73,10 +81,25 @@ const NewsFeeds = React.createClass({
       if(feed.message.indexOf('水産漁港課') < 0) {
         return;
       }
+
+      var style = {
+        marginBottom: styles.message.fontSize * styles.message.lineHeight
+      }
+
+      var lines = feed.message.split('\n');
+      var formattedMessage = lines.map((line, j) => {
+        if(j > 5) {
+          return;
+        }
+        return <p key={j} style={style}>{line}</p>;
+      });
+
       return (
         <div className="col-md-6" key={feed.id} onClick={this.handleOnClick.bind(this, i)}>
           <Paper zDepth={2} style={styles.paper}>
-            <pre style={this.getPreStyle(i)}>{feed.message}</pre>
+            <div style={this.getPreStyle(i)}>
+              {formattedMessage}
+            </div>
             <a><p style={this.getMoreStyle(i)}>...もっと見る</p></a>
             <div style={styles.frame}>
               <img style={styles.picture} src={feed.full_picture} />
