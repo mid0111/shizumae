@@ -57,3 +57,4 @@ const NewsHeader = React.createClass({
 });
 
 export default NewsHeader;
+

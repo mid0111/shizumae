@@ -45,7 +45,7 @@ const NewsContainer = React.createClass({
 
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '1523396571294082',
+        appId      : '197581620267071',
         cookie     : true,
         xfbml      : true,
         version    : 'v2.5'
