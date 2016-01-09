@@ -6,6 +6,11 @@ import utils from './../../utils.js';
 const styles = {
   login: {
     padding: 20
+  },
+  footer: {
+    paddingTop: 50,
+    paddingRight: 15,
+    fontColor: '#3f3f3f'
   }
 };
 
@@ -114,6 +119,12 @@ const NewsContainer = React.createClass({
       <div className="container" style={this.getContainerStyle()}>
         <NewsHeader />
         <NewsFeeds feeds={this.state.feeds} />
+        <div style={styles.footer}>
+          <ul>
+            <li>本ページのニュースは、<a target="_blank" href="https://www.facebook.com/koho.shizuokacity">静岡市役所Facebook</a> で公開されている水産漁港課の記事を表示しています。</li>
+            <li>本サイトでは、 <a target="_blank" href="http://welina.holy.jp/">手書きフォントサイト〜Welina〜</a> のフォントを利用しています。</li>
+          </ul>
+        </div>
       </div>
     );
 
