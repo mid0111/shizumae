@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 import Colors from 'material-ui/lib/styles/colors';
 import List from 'material-ui/lib/lists/list';
 import Divider from 'material-ui/lib/divider';
@@ -29,33 +29,25 @@ const styles = {
   }
 };
 
-const ShopContainer = React.createClass({
+export default class ShopContainer extends Component {
 
-  getInitialState() {
-
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       innerHeight: window.innerHeight,
       detail: {},
       detailMode: false,
       shops: []
     };
-  },
-
-  contextTypes: {
-    focus: React.PropTypes.bool
-  },
-
-  childContextTypes: {
-    focus: React.PropTypes.bool
-  },
+  }
 
   getChildContext() {
     return {focus: this.props.focus};
-  },
+  }
 
   handleResize(e) {
     this.setState({innerHeight: window.innerHeight});
-  },
+  }
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
@@ -64,17 +56,17 @@ const ShopContainer = React.createClass({
         shops: shops
       });
     });
-  },
+  }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
-  },
+  }
 
   componentWillUpdate(nextProps) {
     if(nextProps.focus != this.props.focus && nextProps.focus == false) {
       this.handleOnUnSelect();
     }
-  },
+  }
 
   handleOnSelect(i) {
     this.setState({
@@ -102,11 +94,11 @@ const ShopContainer = React.createClass({
         detail: detail
       });
     }.bind(this));
-  },
+  }
 
   handleOnUnSelect() {
     this.initDetail();
-  },
+  }
 
   getListColStyle() {
     var style = {
@@ -131,7 +123,7 @@ const ShopContainer = React.createClass({
       }
     }
     return style;
-  },
+  }
 
   getIcon(shopType) {
     var url = 'images/';
@@ -153,7 +145,7 @@ const ShopContainer = React.createClass({
         break;
     }
     return url;
-  },
+  }
 
   getRenderItems() {
     return this.state.shops.map((shop, i) => {
@@ -185,7 +177,7 @@ const ShopContainer = React.createClass({
         );
       }
     });
-  },
+  }
 
   render() {
     if(!this.props.focus) {
@@ -222,7 +214,7 @@ const ShopContainer = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
   initDetail() {
     this.setState({
@@ -230,6 +222,12 @@ const ShopContainer = React.createClass({
       detail: {}
     });
   }
-});
+}
 
-export default ShopContainer;
+ShopContainer.contextTypes = {
+  focus: React.PropTypes.bool
+};
+
+ShopContainer.childContextTypes = {
+  focus: React.PropTypes.bool
+};
