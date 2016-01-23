@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import { render } from 'react-dom';
+import { connect } from 'react-redux';
+
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import CustomTheme from './theme.jsx';
+import CustomTheme from '../components/theme.jsx';
 
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 
-import NewsContainer from './news/newsContainer.jsx';
-import ShopContainer from './shop/shopContainer.jsx';
+import NewsContainer from '../components/news/newsContainer.jsx';
+import ShopContainer from '../components/shop/shopContainer.jsx';
+
 
 const styles = {
   container: {
@@ -20,10 +24,10 @@ const styles = {
   }
 };
 
-class Main extends React.Component {
+class App extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       value: 0
     };
@@ -64,12 +68,15 @@ class Main extends React.Component {
   }
 };
 
-Main.childContextTypes = {
-  muiTheme: React.PropTypes.object
+App.childContextTypes = {
+  muiTheme: PropTypes.object
 };
 
-Main.contextTypes = {
-  router: React.PropTypes.object
+App.propTypes = {
 };
 
-module.exports = Main;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(App);
