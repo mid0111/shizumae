@@ -5,7 +5,6 @@ import Divider from 'material-ui/lib/divider';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ShopDetail from './shopDetail.jsx';
 import utils from './../../utils.js';
-import ShopService from './shopService.js';
 
 const styles = {
   container: {
@@ -36,26 +35,20 @@ export default class ShopContainer extends Component {
     this.state = {
       innerHeight: window.innerHeight,
       detail: {},
-      detailMode: false,
-      shops: []
+      detailMode: false
     };
+
+    this.initDetail = this.initDetail.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+    this.handleOnUnSelect = this.handleOnUnSelect.bind(this);
   }
 
   getChildContext() {
     return {focus: this.props.focus};
   }
 
-  handleResize(e) {
-    this.setState({innerHeight: window.innerHeight});
-  }
-
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
-    ShopService.query().then((shops) => {
-      this.setState({
-        shops: shops
-      });
-    });
   }
 
   componentWillUnmount() {
@@ -68,14 +61,18 @@ export default class ShopContainer extends Component {
     }
   }
 
+  handleResize(e) {
+    this.setState({innerHeight: window.innerHeight});
+  }
+
   handleOnSelect(i) {
     this.setState({
       detailMode: true
     });
     var request = {
-      placeId: this.state.shops[i].placeId
+      placeId: this.props.shops[i].placeId
     };
-    var detail = this.state.shops[i];
+    var detail = this.props.shops[i];
     var location = {
       lat: detail.location.lat,
       lng: detail.location.lon || detail.location.lng
@@ -148,7 +145,7 @@ export default class ShopContainer extends Component {
   }
 
   getRenderItems() {
-    return this.state.shops.map((shop, i) => {
+    return this.props.shops.map((shop, i) => {
       var item = (
           <ListItem
               primaryText={shop.name}
@@ -162,7 +159,7 @@ export default class ShopContainer extends Component {
               secondaryTextLines={2}
               />
       );
-      if(i == this.state.shops.length - 1) {
+      if(i == this.props.shops.length - 1) {
         return (
           <div key={i}  onClick={this.handleOnSelect.bind(this,i)}>
             {item}
@@ -231,3 +228,7 @@ ShopContainer.contextTypes = {
 ShopContainer.childContextTypes = {
   focus: React.PropTypes.bool
 };
+
+ShopContainer.propTypes = {
+  shops: PropTypes.array.isRequired
+}

@@ -10,6 +10,7 @@ import Tab from 'material-ui/lib/tabs/tab';
 
 import NewsContainer from '../components/news/newsContainer.jsx';
 import ShopContainer from '../components/shop/shopContainer.jsx';
+import ShopService from '../components/shop/shopService.js';
 
 
 const styles = {
@@ -29,12 +30,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0
+      value: 0,
+      shops: []
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    ShopService.query().then((shops) => {
+      this.setState({
+        shops: shops
+      });
+    });
+  }
   getChildContext() {
     return {
       muiTheme: ThemeManager.getMuiTheme(CustomTheme),
@@ -60,7 +69,7 @@ class App extends Component {
             <NewsContainer focus={this.isFocus(0)}/>
           </Tab>
           <Tab label="お店一覧" style={styles.tab} value={1}>
-            <ShopContainer focus={this.isFocus(1)}/>
+            <ShopContainer focus={this.isFocus(1)} shops={this.state.shops}/>
           </Tab>
         </Tabs>
       </div>
