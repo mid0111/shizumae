@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
 import Colors from 'material-ui/lib/styles/colors';
 import KeyboardArrowLeft from 'material-ui/lib/svg-icons/hardware/keyboard-arrow-left';
@@ -63,25 +63,28 @@ const styles = {
   }
 };
 
-const ShopDetail = React.createClass({
+class ShopDetail extends Component {
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       innerHeight: window.innerHeight
     };
-  },
+
+    this.handleResize = this.handleResize.bind(this);
+  }
 
   handleResize(e) {
     this.setState({innerHeight: window.innerHeight});
-  },
+  }
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
-  },
+  }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
-  },
+  }
 
   getContainerStyle() {
     var style = {
@@ -99,35 +102,32 @@ const ShopDetail = React.createClass({
       style.float = 'left';
       style.width = '66.7%';
     }
-
-    if(this.props.hidden) {
-      style.width = 0;
-    }
     return style;
-  },
+  }
 
   getContentsStyle() {
     return styles.contents;
-  },
+  }
 
   renderNavBar() {
     var titleStyle = styles.title;
+    const { shop } = this.props;
     if(utils.isExSmallDev(window)) {
       return (
-        <div style={styles.navBar} onClick={this.props._handleOnClose}>
+        <div style={styles.navBar} onClick={this.props.onClose}>
           <KeyboardArrowLeft style={styles.icon}/>
-          <h3 style={styles.title}>{this.props.name}</h3>
+          <h3 style={styles.title}>{shop.name}</h3>
         </div>
       );
     } else {
       titleStyle.marginLeft = 30;
       return (
         <div style={styles.navBar}>
-          <h3 style={styles.title}>{this.props.name}</h3>
+          <h3 style={styles.title}>{shop.name}</h3>
         </div>
       );
     }
-  },
+  }
 
   renderImage() {
     var photoFrame = styles.photoFrame;
@@ -142,10 +142,11 @@ const ShopDetail = React.createClass({
       photoStyle.marginLeft = photoStyle.marginRight = 'auto';
     }
 
+    const { shop } = this.props;
     var image;
-    if(this.props.photos) {
+    if(shop.photos) {
       image = <img style={photoStyle}
-                   src={this.props.photos[this.props.photos.length - 1].getUrl({maxWidth: 400})} />
+                   src={shop.photos[shop.photos.length - 1].getUrl({maxWidth: 400})} />
     } else {
       photoStyle.marginTop = 0;
       image = <img src="images/no_image.png" style={photoStyle} />;
@@ -155,7 +156,7 @@ const ShopDetail = React.createClass({
         {image}
       </div>
     );
-  },
+  }
 
   renderWebSiteLink() {
     var menuIconStyle = {
@@ -164,18 +165,20 @@ const ShopDetail = React.createClass({
       fill: Colors.grey700
     };
 
-    if(this.props.website) {
-      return <li style={styles.menuTabItem}><a target="_blank" style={styles.menuTabItemElement} href={this.props.website}><Public style={menuIconStyle} /></a></li>;
+    const { shop } = this.props;
+    if(shop.website) {
+      return <li style={styles.menuTabItem}><a target="_blank" style={styles.menuTabItemElement} href={shop.website}><Public style={menuIconStyle} /></a></li>;
     } else {
       menuIconStyle.fill=Colors.grey300;
       return <li style={styles.menuTabItem}><a disable><Public style={menuIconStyle} /></a></li>;
     }
-  },
+  }
 
   render() {
+    const { shop } = this.props;
     var phoneNumberLink = '';
-    if(this.props.tel) {
-      phoneNumberLink = 'tel:' + this.props.tel.replace(/-/g, '');
+    if(shop.tel) {
+      phoneNumberLink = 'tel:' + shop.tel.replace(/-/g, '');
     }
     return (
       <div style={this.getContainerStyle()}>
@@ -186,19 +189,33 @@ const ShopDetail = React.createClass({
           </div>
           <ul className="nav nav-pills nav-justified" style={styles.tabs}>
             <li style={styles.menuTabItem}><a target="_blank" style={styles.menuTabItemElement} href={phoneNumberLink}><Phone style={styles.menuIcon} /></a></li>
-            <li style={styles.menuTabItem}><a target="_blank" style={styles.menuTabItemElement} href={this.props.mapUrl}><NearMe style={styles.menuIcon} /></a></li>
+            <li style={styles.menuTabItem}><a target="_blank" style={styles.menuTabItemElement} href={shop.mapUrl}><NearMe style={styles.menuIcon} /></a></li>
             {this.renderWebSiteLink()}
           </ul>
 
           <div style={styles.detail}>
-            <p>{this.props.type}</p>
-            <p>{this.props.address}</p>
-            <ShopDetailMap location={this.props.location} />
+            <p>{shop.type}</p>
+            <p>{shop.address}</p>
+            <ShopDetailMap location={shop.location} />
           </div>
         </div>
       </div>
     );
   }
-});
+}
+
+ShopDetail.propTypes = {
+  shop: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    address: PropTypes.string.isRequired,
+    tel: PropTypes.string.isRequired,
+    mapUtl: PropTypes.string,
+    location: PropTypes.object,
+    photos: PropTypes.array,
+    website: PropTypes.string
+  }).isRequired,
+  onClose: PropTypes.func
+}
 
 export default ShopDetail;

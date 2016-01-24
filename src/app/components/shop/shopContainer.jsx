@@ -150,17 +150,7 @@ export default class ShopContainer extends Component {
       return null;
     }
     return (
-      <ShopDetail name={shop.selected.name}
-                  type={shop.selected.type}
-                  address={shop.selected.address}
-                  tel={shop.selected.tel}
-                  mapUrl={shop.selected.mapUrl}
-                  location={shop.selected.location}
-                  photos={shop.selected.photos}
-                  website={shop.selected.website}
-                  _handleOnClose={this.handleLeaveDetail}
-                  hidden = {!isSelected}
-      />
+      <ShopDetail shop={shop.selected} onClose={this.handleLeaveDetail} />
     );
   }
 
