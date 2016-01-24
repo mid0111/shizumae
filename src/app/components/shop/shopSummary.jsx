@@ -4,6 +4,10 @@ import Divider from 'material-ui/lib/divider';
 import ListItem from 'material-ui/lib/lists/list-item';
 
 const styles = {
+  secText: {
+    paddingRight: 0,
+    fontSize: '0.8em'
+  },
   distance: {
     fontSize: '0.9em'
   },
@@ -43,10 +47,7 @@ class ShopSummary extends Component {
       <p style={styles.secText}>
         {shop.address}<br/>
         <span style={styles.distance}>
-          <img src={this.getIcon(shop.type)} style={styles.shopIcon} /> {shop.type}
-        </span>
-        <span style={styles.distance}>
-          {shop.distance.toFixed(1)} km
+          <img src={this.getIcon(shop.type)} style={styles.shopIcon} /> {shop.type} {shop.distance.toFixed(1)} km
         </span>
       </p>
     );

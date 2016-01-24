@@ -14,13 +14,17 @@ const styles = {
     padding: 0,
     width: '100%'
   },
+  list: {
+    overflow: 'auto',
+    paddingLeft: 16,
+    paddingBottom: 30,
+    zIndex: 10,
+    transition: 'all 450ms',
+    transform: 'translate3d(0px, 0px, 0px)'
+  },
   paper: {
     padding: 0,
     paddingBottom: 8
-  },
-  secText: {
-    paddingRight: 0,
-    fontSize: '0.8em'
   }
 };
 
@@ -57,31 +61,22 @@ export default class ShopContainer extends Component {
   }
 
   getListColStyle() {
+    if(!utils.isExSmallDev(window)) {
+      return Object.assign({}, styles.list, {
+        height: this.state.innerHeight - 48,
+        borderRight: 'solid 1px ' + Colors.grey300,
+        width: '33.3%',
+        float: 'left'
+      });
+    }
+
     const { shop } = this.props;
     const isSelected = Object.keys(shop.selected).length > 0;
-
-    var style = {
-      overflow: 'auto',
+    return Object.assign({}, styles.list, {
       height: this.state.innerHeight - 48,
-      paddingLeft: 16,
-      paddingBottom: 30,
       zIndex: 10,
-      transition: 'all 450ms',
-      transform: 'translate3d(0px, 0px, 0px)'
-    };
-    if(!utils.isExSmallDev(window)) {
-      style.borderRight = 'solid 1px ' + Colors.grey300;
-      style.width = '33.3%';
-      style.float = 'left';
-    } else {
-      style.zIndex = 10;
-      if(isSelected) {
-        style.transform = 'translate3d(-' + (window.innerWidth * 1.5) + 'px, 0px, 10px)';
-      } else {
-        style.transform = 'translate3d(0px, 0px, 0px)';
-      }
-    }
-    return style;
+      transform: isSelected ? 'translate3d(-' + (window.innerWidth * 1.5) + 'px, 0px, 10px)' : 'translate3d(0px, 0px, 0px)'
+    });
   }
 
   getRenderItems() {
