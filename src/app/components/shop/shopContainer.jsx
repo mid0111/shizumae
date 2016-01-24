@@ -70,9 +70,9 @@ export default class ShopContainer extends Component {
       detailMode: true
     });
     var request = {
-      placeId: this.props.shops[i].placeId
+      placeId: this.props.shop.items[i].placeId
     };
-    var detail = this.props.shops[i];
+    var detail = this.props.shop.items[i];
     var location = {
       lat: detail.location.lat,
       lng: detail.location.lon || detail.location.lng
@@ -145,7 +145,7 @@ export default class ShopContainer extends Component {
   }
 
   getRenderItems() {
-    return this.props.shops.map((shop, i) => {
+    return this.props.shop.items.map((shop, i) => {
       var item = (
           <ListItem
               primaryText={shop.name}
@@ -159,7 +159,7 @@ export default class ShopContainer extends Component {
               secondaryTextLines={2}
               />
       );
-      if(i == this.props.shops.length - 1) {
+      if(i == this.props.shop.items.length - 1) {
         return (
           <div key={i}  onClick={this.handleOnSelect.bind(this,i)}>
             {item}
@@ -230,5 +230,5 @@ ShopContainer.childContextTypes = {
 };
 
 ShopContainer.propTypes = {
-  shops: PropTypes.array.isRequired
+  shop: PropTypes.object.isRequired
 }
