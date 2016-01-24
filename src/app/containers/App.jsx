@@ -63,14 +63,10 @@ class App extends Component {
     this.setState({
       value: value
     });
-    if(value == 1) {
+    if(value != 1) {
       this.handleLeaveShopDetail();
     }
   };
-
-  isFocus(value) {
-    return this.state.value == value;
-  }
 
   render() {
     return (
@@ -78,11 +74,10 @@ class App extends Component {
         <Tabs value={this.state.value}
               onChange={this.handleChange}>
           <Tab label="ニュース" style={styles.tab} value={0}>
-            <NewsContainer focus={this.isFocus(0)}/>
+            <NewsContainer/>
           </Tab>
           <Tab label="お店一覧" style={styles.tab} value={1}>
             <ShopContainer
-                focus={this.isFocus(1)}
                 shop={this.props.shop}
                 onSelect={this.handleSelectShop}
                 onLeaveDetail={this.handleLeaveShopDetail}

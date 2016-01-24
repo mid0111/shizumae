@@ -71,10 +71,6 @@ const ShopDetail = React.createClass({
     };
   },
 
-  contextTypes: {
-    focus: React.PropTypes.bool
-  },
-
   handleResize(e) {
     this.setState({innerHeight: window.innerHeight});
   },
@@ -177,10 +173,6 @@ const ShopDetail = React.createClass({
   },
 
   render() {
-    if(!this.context.focus) {
-      return null;
-    }
-
     var phoneNumberLink = '';
     if(this.props.tel) {
       phoneNumberLink = 'tel:' + this.props.tel.replace(/-/g, '');

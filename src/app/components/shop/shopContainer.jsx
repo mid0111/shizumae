@@ -40,10 +40,6 @@ export default class ShopContainer extends Component {
     this.handleLeaveDetail = this.handleLeaveDetail.bind(this);
   }
 
-  getChildContext() {
-    return {focus: this.props.focus};
-  }
-
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
   }
@@ -169,10 +165,6 @@ export default class ShopContainer extends Component {
   }
 
   render() {
-    if(!this.props.focus) {
-      return null;
-    }
-
     return (
       <div className="container" style={styles.container}>
         <div className="row">
@@ -188,14 +180,6 @@ export default class ShopContainer extends Component {
     );
   }
 }
-
-ShopContainer.contextTypes = {
-  focus: React.PropTypes.bool
-};
-
-ShopContainer.childContextTypes = {
-  focus: React.PropTypes.bool
-};
 
 ShopContainer.propTypes = {
   shop: PropTypes.object.isRequired,
