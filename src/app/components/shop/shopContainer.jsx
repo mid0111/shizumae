@@ -33,14 +33,11 @@ export default class ShopContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      innerHeight: window.innerHeight,
-      detail: {},
-      detailMode: false
+      innerHeight: window.innerHeight
     };
 
-    this.initDetail = this.initDetail.bind(this);
     this.handleResize = this.handleResize.bind(this);
-    this.handleOnUnSelect = this.handleOnUnSelect.bind(this);
+    this.handleLeaveDetail = this.handleLeaveDetail.bind(this);
   }
 
   getChildContext() {
@@ -55,49 +52,22 @@ export default class ShopContainer extends Component {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  componentWillUpdate(nextProps) {
-    if(nextProps.focus != this.props.focus && nextProps.focus == false) {
-      this.handleOnUnSelect();
-    }
-  }
-
   handleResize(e) {
     this.setState({innerHeight: window.innerHeight});
   }
 
-  handleOnSelect(i) {
-    this.setState({
-      detailMode: true
-    });
-    var request = {
-      placeId: this.props.shop.items[i].placeId
-    };
-    var detail = this.props.shop.items[i];
-    var location = {
-      lat: detail.location.lat,
-      lng: detail.location.lon || detail.location.lng
-    }
-    detail.location = location;
-
-    this.setState({
-      detail: detail
-    });
-    var service = new google.maps.places.PlacesService(window.document.getElementById('map'));
-    service.getDetails(request, function (place, status) {
-      detail.photos = place.photos;
-      detail.website = place.website;
-      detail.mapUrl = place.url;
-      this.setState({
-        detail: detail
-      });
-    }.bind(this));
+  handleSelect(i) {
+    this.props.onSelect(i);
   }
 
-  handleOnUnSelect() {
-    this.initDetail();
+  handleLeaveDetail() {
+    this.props.onLeaveDetail();
   }
 
   getListColStyle() {
+    const { shop } = this.props;
+    const isSelected = Object.keys(shop.selected).length > 0;
+
     var style = {
       overflow: 'auto',
       height: this.state.innerHeight - 48,
@@ -113,7 +83,7 @@ export default class ShopContainer extends Component {
       style.float = 'left';
     } else {
       style.zIndex = 10;
-      if(this.state.detailMode) {
+      if(isSelected) {
         style.transform = 'translate3d(-' + (window.innerWidth * 1.5) + 'px, 0px, 10px)';
       } else {
         style.transform = 'translate3d(0px, 0px, 0px)';
@@ -162,13 +132,13 @@ export default class ShopContainer extends Component {
       );
       if(i == shop.items.length - 1) {
         return (
-          <div key={i}  onClick={this.handleOnSelect.bind(this,i)}>
+          <div key={i} onClick={this.handleSelect.bind(this,i)}>
             {listItem}
           </div>
         );
       } else {
         return (
-          <div key={i} onClick={this.handleOnSelect.bind(this,i)} >
+          <div key={i} onClick={this.handleSelect.bind(this,i)} >
             {listItem}
             <Divider />
           </div>
@@ -177,28 +147,32 @@ export default class ShopContainer extends Component {
     });
   }
 
+  renderShopDetail() {
+    const { shop } = this.props;
+    const isSelected = Object.keys(shop.selected).length > 0;
+    if(!isSelected) {
+      return null;
+    }
+    return (
+      <ShopDetail name={shop.selected.name}
+                  type={shop.selected.type}
+                  address={shop.selected.address}
+                  tel={shop.selected.tel}
+                  mapUrl={shop.selected.mapUrl}
+                  location={shop.selected.location}
+                  photos={shop.selected.photos}
+                  website={shop.selected.website}
+                  _handleOnClose={this.handleLeaveDetail}
+                  hidden = {!isSelected}
+      />
+    );
+  }
+
   render() {
     if(!this.props.focus) {
       return null;
     }
 
-    var lists = null;
-    var detail = null;
-    if(this.state.detailMode) {
-      detail = (
-        <ShopDetail name={this.state.detail.name}
-                    type={this.state.detail.type}
-                    address={this.state.detail.address}
-                    tel={this.state.detail.tel}
-                    mapUrl={this.state.detail.mapUrl}
-                    location={this.state.detail.location}
-                    photos={this.state.detail.photos}
-                    website={this.state.detail.website}
-                    _handleOnClose={this.handleOnUnSelect}
-                    hidden = {!this.state.detailMode}
-        />
-      );
-    }
     return (
       <div className="container" style={styles.container}>
         <div className="row">
@@ -208,17 +182,10 @@ export default class ShopContainer extends Component {
             </List>
           </div>
           <div id="map" />
-          {detail}
+          {this.renderShopDetail()}
         </div>
       </div>
     );
-  }
-
-  initDetail() {
-    this.setState({
-      detailMode: false,
-      detail: {}
-    });
   }
 }
 
@@ -231,5 +198,7 @@ ShopContainer.childContextTypes = {
 };
 
 ShopContainer.propTypes = {
-  shop: PropTypes.object.isRequired
+  shop: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onLeaveDetail: PropTypes.func.isRequired
 }

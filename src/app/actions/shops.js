@@ -1,19 +1,23 @@
 import fetch from 'isomorphic-fetch';
+import * as ActionTypes from './ActionTypes';
 
-export const REQUEST_SHOPS = 'REQUEST_SHOPS';
 function requestShops() {
   return {
-    type: REQUEST_SHOPS
+    type: ActionTypes.REQUEST_SHOPS
   };
 }
 
-export const RECEIVE_SHOPS = 'RECEIVE_SHOPS';
 function receiveShops(json) {
   return {
-    type: RECEIVE_SHOPS,
+    type: ActionTypes.RECEIVE_SHOPS,
     shops: json.map(res => {
       let item = res._source;
       item.distance = res.sort[0];
+      let location = {
+        lat: item.location.lat,
+        lng: item.location.lon
+      };
+      item.location = location;
       return item;
     })
   };
@@ -43,4 +47,48 @@ function getCurrentPosition() {
       resolve(defaultLocation);
     }
   });
+}
+
+function requestShopDetail(item) {
+  return {
+    type: ActionTypes.REQUEST_SHOP_DETAIL,
+    selected: item
+  };
+}
+
+function receiveShopDetail(item, detail) {
+  return {
+    type: ActionTypes.RECEIVE_SHOP_DETAIL,
+    selected: Object.assign({}, item, {
+      photos: detail.photos,
+      website: detail.website,
+      mapUrl: detail.url
+    })
+  };
+}
+
+export function fetchShopDetail(item) {
+  return dispatch => {
+    dispatch(requestShopDetail(item));
+
+    return getPlaceDetail(item.placeId)
+      .then(place => dispatch(receiveShopDetail(item, place)));
+  };
+}
+
+function getPlaceDetail(placeId) {
+  var service = new google.maps.places.PlacesService(window.document.getElementById('map'));
+  return new Promise(resolve => {
+    service.getDetails({
+      placeId: placeId
+    }, (place, status) => {
+      resolve(place);
+    });
+  });
+}
+
+export function initShopDetail() {
+  return {
+    type: ActionTypes.INIT_SHOP_DETAIL
+  };
 }

@@ -11,8 +11,7 @@ import Tab from 'material-ui/lib/tabs/tab';
 import NewsContainer from '../components/news/newsContainer.jsx';
 import ShopContainer from '../components/shop/shopContainer.jsx';
 
-import { fetchShops } from '../actions/shops';
-
+import { fetchShops, fetchShopDetail, initShopDetail } from '../actions/shops';
 
 const styles = {
   container: {
@@ -35,6 +34,8 @@ class App extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSelectShop = this.handleSelectShop.bind(this);
+    this.handleLeaveShopDetail = this.handleLeaveShopDetail.bind(this);
   }
 
   componentDidMount() {
@@ -48,11 +49,24 @@ class App extends Component {
     };
   }
 
+  handleSelectShop(index) {
+    const { shop, dispatch } = this.props;
+    dispatch(fetchShopDetail(shop.items[index]));
+  }
+
+  handleLeaveShopDetail() {
+    const { dispatch } = this.props;
+    dispatch(initShopDetail());
+  }
+
   handleChange(value) {
     this.setState({
       value: value
     });
-  }
+    if(value == 1) {
+      this.handleLeaveShopDetail();
+    }
+  };
 
   isFocus(value) {
     return this.state.value == value;
@@ -67,7 +81,12 @@ class App extends Component {
             <NewsContainer focus={this.isFocus(0)}/>
           </Tab>
           <Tab label="お店一覧" style={styles.tab} value={1}>
-            <ShopContainer focus={this.isFocus(1)} shop={this.props.shop}/>
+            <ShopContainer
+                focus={this.isFocus(1)}
+                shop={this.props.shop}
+                onSelect={this.handleSelectShop}
+                onLeaveDetail={this.handleLeaveShopDetail}
+            />
           </Tab>
         </Tabs>
       </div>
