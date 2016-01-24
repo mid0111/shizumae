@@ -145,30 +145,31 @@ export default class ShopContainer extends Component {
   }
 
   getRenderItems() {
-    return this.props.shop.items.map((shop, i) => {
-      var item = (
+    const { shop } = this.props;
+    return shop.items.map((item, i) => {
+      var listItem = (
           <ListItem
-              primaryText={shop.name}
+              primaryText={item.name}
               secondaryText={
                  <p style={styles.secText}>
-                   {shop.address}<br/>
-                   <span style={styles.distance}><img src={this.getIcon(shop.type)} style={styles.shopIcon} /> {shop.type}　</span>
-                   <span style={styles.distance}>{shop.distance.toFixed(1)} km</span>
+                   {item.address}<br/>
+                   <span style={styles.distance}><img src={this.getIcon(item.type)} style={styles.shopIcon} /> {item.type}　</span>
+                   <span style={styles.distance}>{item.distance.toFixed(1)} km</span>
                  </p>
               }
               secondaryTextLines={2}
               />
       );
-      if(i == this.props.shop.items.length - 1) {
+      if(i == shop.items.length - 1) {
         return (
           <div key={i}  onClick={this.handleOnSelect.bind(this,i)}>
-            {item}
+            {listItem}
           </div>
         );
       } else {
         return (
           <div key={i} onClick={this.handleOnSelect.bind(this,i)} >
-            {item}
+            {listItem}
             <Divider />
           </div>
         );
