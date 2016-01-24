@@ -21,10 +21,6 @@ const styles = {
     zIndex: 10,
     transition: 'all 450ms',
     transform: 'translate3d(0px, 0px, 0px)'
-  },
-  paper: {
-    padding: 0,
-    paddingBottom: 8
   }
 };
 
