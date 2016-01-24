@@ -3,6 +3,8 @@ import Colors from 'material-ui/lib/styles/colors';
 import List from 'material-ui/lib/lists/list';
 import Divider from 'material-ui/lib/divider';
 import ListItem from 'material-ui/lib/lists/list-item';
+
+import ShopSummary from './shopSummary.jsx';
 import ShopDetail from './shopDetail.jsx';
 import utils from './../../utils.js';
 
@@ -19,12 +21,6 @@ const styles = {
   secText: {
     paddingRight: 0,
     fontSize: '0.8em'
-  },
-  distance: {
-    fontSize: '0.9em'
-  },
-  shopIcon: {
-    width: '1em'
   }
 };
 
@@ -88,43 +84,11 @@ export default class ShopContainer extends Component {
     return style;
   }
 
-  getIcon(shopType) {
-    var url = 'images/';
-    switch(shopType) {
-      case '居酒屋':
-        url += 'shrimp.png';
-        break;
-      case '和食':
-        url += 'japanese.png';
-        break;
-      case 'レストラン':
-        url += 'restaurant.png';
-        break;
-      case '寿司':
-        url += 'sushi.png';
-        break;
-      case '中華':
-        url += 'chinese.png';
-        break;
-    }
-    return url;
-  }
-
   getRenderItems() {
     const { shop } = this.props;
     return shop.items.map((item, i) => {
       var listItem = (
-          <ListItem
-              primaryText={item.name}
-              secondaryText={
-                 <p style={styles.secText}>
-                   {item.address}<br/>
-                   <span style={styles.distance}><img src={this.getIcon(item.type)} style={styles.shopIcon} /> {item.type}　</span>
-                   <span style={styles.distance}>{item.distance.toFixed(1)} km</span>
-                 </p>
-              }
-              secondaryTextLines={2}
-              />
+        <ShopSummary shop={item} />
       );
       if(i == shop.items.length - 1) {
         return (
