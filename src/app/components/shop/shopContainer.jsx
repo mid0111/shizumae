@@ -78,35 +78,25 @@ export default class ShopContainer extends Component {
   getRenderItems() {
     const { shop } = this.props;
     return shop.items.map((item, i) => {
-      var listItem = (
-        <ShopSummary shop={item} />
+      let divider = i != shop.items.length -1 && <Divider />;
+
+      return (
+        <div key={i}>
+        <ShopSummary shop={item} onClick={this.handleSelect.bind(this, i)} />
+        {divider}
+        </div>
       );
-      if(i == shop.items.length - 1) {
-        return (
-          <div key={i} onClick={this.handleSelect.bind(this,i)}>
-            {listItem}
-          </div>
-        );
-      } else {
-        return (
-          <div key={i} onClick={this.handleSelect.bind(this,i)} >
-            {listItem}
-            <Divider />
-          </div>
-        );
-      }
     });
   }
 
   renderShopDetail() {
     const { shop } = this.props;
     const isSelected = Object.keys(shop.selected).length > 0;
-    if(!isSelected) {
-      return null;
+    if(isSelected) {
+      return (
+        <ShopDetail shop={shop.selected} onClose={this.handleLeaveDetail} />
+      );
     }
-    return (
-      <ShopDetail shop={shop.selected} onClose={this.handleLeaveDetail} />
-    );
   }
 
   render() {

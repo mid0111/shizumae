@@ -41,7 +41,7 @@ class ShopSummary extends Component {
   }
 
   render() {
-    const { shop } = this.props;
+    const { shop, onClick } = this.props;
 
     var secondaryText = (
       <p style={styles.secText}>
@@ -57,6 +57,7 @@ class ShopSummary extends Component {
           primaryText={shop.name}
           secondaryText={secondaryText}
           secondaryTextLines={2}
+          onClick={onClick}
       />
     );
   }
@@ -68,7 +69,8 @@ ShopSummary.propTypes = {
     type: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     distance: PropTypes.number.isRequired
-  }).isRequired
+  }).isRequired,
+  onClick: PropTypes.func
 }
 
 export default ShopSummary;
